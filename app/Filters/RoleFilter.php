@@ -21,7 +21,7 @@ class RoleFilter implements FilterInterface
                 return redirect()->to('/keuangan/index');
             } elseif ($role == 3 && strpos($request->uri->getPath(), 'operator') === false) {
                 return redirect()->to('/operator/index');
-            } elseif ($role == 3 && strpos($request->uri->getPath(), 'user') === false) {
+            } elseif ($role == 4 && strpos($request->uri->getPath(), 'user') === false) {
                 return redirect()->to('/user/index');
             }
         }

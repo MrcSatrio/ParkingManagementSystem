@@ -22,4 +22,9 @@ class UserModel extends Model
     {
         return $this->where('npm', $npm)->first();
     }
+
+    public function getNama()
+    {
+        return $this->findAll();
+    }
 }

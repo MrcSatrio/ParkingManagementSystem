@@ -13,33 +13,32 @@ class Auth extends BaseController
         $usermodel = new UserModel();
         $kartumodel = new KartuModel();
 
-        //Insert Kartu
-        $datakartu = [
-            'nomor_kartu' => $this->request->getVar('nomor_kartu'),
-            'saldo' => $this->request->getVar('saldo'),
-        ];
+        $npm = $this->request->getVar('npm');
+        $password = $this->request->getVar('password');
+
+        // Validasi NPM
+        if (strlen($npm) < 10 || !ctype_digit($npm)) {
+            session()->setFlashdata('error_npm', 'ㅤ<br>');
+            return redirect()->to('/tambahmhs');
+        }
+
+        // Validasi Password
+        if (strlen($password) < 8 || !preg_match('/[a-zA-Z]/', $password) || !preg_match('/\d/', $password)) {
+        session()->setFlashdata('error_pass', 'ㅤ<br>');
+        return redirect()->to('/tambahmhs');
+        }
+
+        // Jika berhasil, simpan data ke database
+        $datakartu = [    'nomor_kartu' => $this->request->getVar('nomor_kartu'),    'saldo' => $this->request->getVar('saldo'),];
         $kartumodel->save($datakartu);
 
-        //Insert User
-        $rules = [
-            'npm' => 'required|alpha_numeric_space|min_length[3]',
-            'password' => 'required|min_length[5]'
-        ];
-        if ($this->validate($rules)) {
-            $datauser = [
-                'npm' => $this->request->getVar('npm'),
-                'id_kartu' => $kartumodel->getInsertID(),
-                'id_role' => $this->request->getVar('id_role'),
-                'nama' => $this->request->getVar('nama'),
-                'password' => md5($this->request->getVar('password')),
-            ];
+        $datauser = [    'npm' => $npm,    'id_kartu' => $kartumodel->getInsertID(),    'id_role' => $this->request->getVar('id_role'),    'nama' => $this->request->getVar('nama'),    'password' => md5($password),];
 
-            $usermodel->insert($datauser);
-            return redirect()->to('/tambahmhs');
-        } else {
-            $datauser['validation'] = $this->validator;
-            return view('/tambahmhs', $datauser);
-        }
+        $usermodel->insert($datauser);
+
+        // Tampilkan pesan berhasil
+        session()->setFlashdata('success', 'Berhasil Input Kartu');
+        return redirect()->to('/tambahmhs');
         
     }
 

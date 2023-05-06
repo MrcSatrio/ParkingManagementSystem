@@ -34,17 +34,28 @@ $routes->set404Override();
 $routes->get('/', 'Home::index');
 $routes->post('/register', 'Auth\Auth::register');
 $routes->post('/login', 'Auth\Auth::login');
-$routes->post('/logout', 'Auth\Auth::logout');
+$routes->get('/logout', 'Auth\Auth::logout');
 
+//role admin
+
+//role keuangan
 $routes->get('/tambahmhs', 'Keuangan\Keuangan::tambah');
 
+//role operator
+
+//role user
+
+///////////////////////////////////////////////////////////////////////////////////////////////////////////
+//FILTERSS
 //role admin
 $routes->group('admin', ['filter' => 'roleFilter'], function ($routes) {
     $routes->get('index', 'Admin\Admin::index');
+
 });
 //role keuangan
 $routes->group('keuangan', ['filter' => 'roleFilter'], function ($routes) {
     $routes->get('index', 'Keuangan\Keuangan::index');
+    //$routes->get('tambah', 'Keuangan\Keuangan::tambah');
     
 });
 //role operator
