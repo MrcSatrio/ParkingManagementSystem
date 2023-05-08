@@ -9,11 +9,12 @@ class Operator extends BaseController
 {
     public function index()
     {
-        $nama = new UserModel();
-        $session = session();
-        $nama = $session->get('nama');
-        
-        $data['nama'] = $nama;
+        //tolong masukin di setiap method//
+        $userModel = new UserModel();
+        $data = [
+            'title' => 'Parking Management System',
+            'user' => $userModel->where('npm', session('npm'))->first()
+        ];
 
         return view('r_operator/index', $data);
     }

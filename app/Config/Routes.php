@@ -44,6 +44,7 @@ $routes->get('/tambahmhs', 'Keuangan\Keuangan::tambah');
 //role operator
 
 //role user
+$routes->get('/profileuser', 'User\User::profile');
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////
 //FILTERSS

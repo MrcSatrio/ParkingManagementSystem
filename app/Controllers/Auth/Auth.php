@@ -24,7 +24,7 @@ class Auth extends BaseController
 
         // Validasi Password
         if (strlen($password) < 8 || !preg_match('/[a-zA-Z]/', $password) || !preg_match('/\d/', $password)) {
-        session()->setFlashdata('error_pass', 'ㅤ<br>');
+        session()->setFlashdata('error_pass', '<br>');
         return redirect()->to('/tambahmhs');
         }
 
@@ -37,9 +37,8 @@ class Auth extends BaseController
         $usermodel->insert($datauser);
 
         // Tampilkan pesan berhasil
-        session()->setFlashdata('success', 'Berhasil Input Kartu');
+        session()->setFlashdata('success', '<br>');
         return redirect()->to('/tambahmhs');
-        
     }
 
     //aksi Login
@@ -54,11 +53,13 @@ class Auth extends BaseController
 
         if ($user) {
             if (md5($password) == $user['password']) {
+                //Session untuk login
                 $session = session();
                 $sessionData = [
                     'npm'=>$user['npm'],
                     'nama' => $user['nama'],
                     'id_role' => $user['id_role']
+                    
                 ];
                 $session->set($sessionData);
                 if ($user['id_role'] == 1) {

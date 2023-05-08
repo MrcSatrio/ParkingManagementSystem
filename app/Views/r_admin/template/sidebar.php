@@ -21,6 +21,12 @@
 
             <!-- Nav Item - Charts -->
             <li class="nav-item">
+                <a class="nav-link" href="">
+                    <i class="fas fa-clock"></i>
+                    <span>Data Pengguna</span></a>
+            </li>
+
+            <li class="nav-item">
                 <a class="nav-link" href="charts.html">
                     <i class="fas fa-user-circle"></i>
                     <span>Data Mahasiswa</span></a>
