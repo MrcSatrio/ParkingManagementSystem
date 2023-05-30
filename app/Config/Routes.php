@@ -30,44 +30,89 @@ $routes->set404Override();
 // We get a performance increase by specifying the default
 // route since we don't have to scan directories.
 
-//login & Register, LOGOUT
-$routes->get('/', 'Home::index');
-$routes->post('/register', 'Auth\Auth::register');
+//Authentikasi 
+$routes->get('/', 'Auth\Auth::index');
 $routes->post('/login', 'Auth\Auth::login');
 $routes->get('/logout', 'Auth\Auth::logout');
-
-//role admin
-
-//role keuangan
-$routes->get('/tambahmhs', 'Keuangan\Keuangan::tambah');
-
-//role operator
-
-//role user
-$routes->get('/profileuser', 'User\User::profile');
-
+$routes->post('/ceksaldo', 'Auth\Saldo::ceksaldo');
+//FORGOT
+$routes->get('/forgotpassword', 'Auth\Auth::forgot_password');
+$routes->match(['get', 'post'], '/passwordreset', 'Auth\Auth::password_reset');
+//endForgot
+//reset page
+$routes->get('/resetpassword', 'Auth\Auth::change_password');
+$routes->match(['get', 'post'], '/updatepassword', 'Auth\Auth::update_password');
+//endAuth
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////
-//FILTERSS
+//FILTERS
 //role admin
 $routes->group('admin', ['filter' => 'roleFilter'], function ($routes) {
-    $routes->get('index', 'Admin\Admin::index');
-
+    $routes->get('dashboard', 'Admin\Dashboard::index');
+    //topbar
+    $routes->get('ubah_password', 'Admin\Password::ubahPassword');
+    $routes->post('update_password', 'Admin\Password::updatePassword');
+    $routes->get('profile', 'Admin\Profile::index');
+    $routes->post('update_profil', 'Admin\Profile::updateProfil');
+    //endtopbar
+    //Users
+    $routes->get('create', 'Admin\User::userCreate');
+    $routes->get('read', 'Admin\User::userRead');
+    $routes->get('update', 'Admin\User::userUpdate');
+    $routes->get('delete', 'Admin\User::userDelete');
+    $routes->post('insert', 'Admin\User::userInsert');
+    //endUsers
+    //Transaksi
+    $routes->get('transaksi_inputkodebooking', 'Admin\Transaksi::transaksi_inputkodebooking');
+    $routes->post('transaksi_validasiinputkodebooking', 'Admin\Transaksi::transaksi_validasiinputkodebooking');
+    $routes->post('transaksi_approve', 'Admin\Transaksi::transaksi_approve');
+    $routes->get('transaksi_riwayat', 'Admin\Transaksi::riwayat');
+    //endTransaksi
 });
 //role keuangan
 $routes->group('keuangan', ['filter' => 'roleFilter'], function ($routes) {
-    $routes->get('index', 'Keuangan\Keuangan::index');
-    //$routes->get('tambah', 'Keuangan\Keuangan::tambah');
-    
+    $routes->get('dashboard', 'Keuangan\Dashboard::index');
+    //topbar
+    $routes->get('ubah_password', 'Admin\Password::ubahPassword');
+    $routes->post('update_password', 'Admin\Password::updatePassword');
+    $routes->get('profile', 'Admin\Profile::index');
+    $routes->post('update_profil', 'Admin\Profile::updateProfil');
+    //endtopbar
+    $routes->get('create', 'Keuangan\User::create');
+    $routes->post('insert', 'Admin\User::userInsert');
 });
 //role operator
 $routes->group('operator', ['filter' => 'roleFilter'], function ($routes) {
-    $routes->get('index', 'Operator\Operator::index');
+    $routes->get('dashboard', 'Operator\Dashboard::index');
+    //topbar
+    $routes->get('ubah_password', 'Admin\Password::ubahPassword');
+    $routes->post('update_password', 'Admin\Password::updatePassword');
+    $routes->get('profile', 'Admin\Profile::index');
+    $routes->post('update_profil', 'Admin\Profile::updateProfil');
+    //endtopbar
+    //parkir
+
+    //endParkir
 });
 //role user
 $routes->group('user', ['filter' => 'roleFilter'], function ($routes) {
-    $routes->get('index', 'User\User::index');
+    $routes->get('dashboard', 'User\Dashboard::index');
+    //topbar
+    $routes->get('ubah_password', 'Admin\Password::ubahPassword');
+    $routes->post('update_password', 'Admin\Password::updatePassword');
+    $routes->get('profile', 'Admin\Profile::index');
+    $routes->post('update_profil', 'Admin\Profile::updateProfil');
+    //endtopbar
+    //topup
+    $routes->get('topup', 'User\Topup::index');
+    $routes->post('transaksi_topup', 'Admin\Transaksi::topup');
+    //endtopup
+    //kartuhilang
+    $routes->get('kartuhilang', 'User\KartuHilang::index');
+    $routes->post('transaksi_kartuHilang', 'Admin\Transaksi::transaksi_kartuHilang');
+    $routes->get('transaksi_result/(:any)/(:num)', 'Admin\Transaksi::transaksi_result/$1/$2');
+    //endKartuhilang
 });
-
+//endFilters
 /*
  * --------------------------------------------------------------------
  * Additional Routing

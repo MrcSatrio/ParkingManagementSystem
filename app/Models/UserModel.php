@@ -16,15 +16,5 @@ class UserModel extends Model
     protected $createdField  = 'created_at';
     protected $updatedField  = 'updated_at';
 
-    protected $allowedFields = ['npm', 'id_kartu', 'id_role', 'nama', 'password', 'created_at', 'updated_at'];
-
-    public function getUser($npm)
-    {
-        return $this->where('npm', $npm)->first();
-    }
-
-    public function getNama()
-    {
-        return $this->findAll();
-    }
+    protected $allowedFields = ['npm', 'id_kartu', 'id_role', 'nama', 'email', 'password', 'token', 'created_at', 'updated_at'];
 }

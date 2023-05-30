@@ -16,13 +16,13 @@ class RoleFilter implements FilterInterface
         } else {
             $role = $session->get('id_role');
             if ($role == 1 && strpos($request->uri->getPath(), 'admin') === false) {
-                return redirect()->to('/admin/index');
+                return redirect()->to('/admin/dashboard');
             } elseif ($role == 2 && strpos($request->uri->getPath(), 'keuangan') === false) {
-                return redirect()->to('/keuangan/index');
+                return redirect()->to('/keuangan/dashboard');
             } elseif ($role == 3 && strpos($request->uri->getPath(), 'operator') === false) {
-                return redirect()->to('/operator/index');
+                return redirect()->to('/operator/dashboard');
             } elseif ($role == 4 && strpos($request->uri->getPath(), 'user') === false) {
-                return redirect()->to('/user/index');
+                return redirect()->to('/user/dashboard');
             }
         }
     }

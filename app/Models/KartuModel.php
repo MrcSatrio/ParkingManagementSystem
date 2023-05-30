@@ -17,5 +17,4 @@ class KartuModel extends Model
     protected $updatedField  = 'updated_at';
 
     protected $allowedFields = ['id_kartu', 'nomor_kartu', 'saldo', 'created_at', 'updated_at'];
-
 }

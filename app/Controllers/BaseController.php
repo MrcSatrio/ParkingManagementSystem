@@ -9,6 +9,17 @@ use CodeIgniter\HTTP\RequestInterface;
 use CodeIgniter\HTTP\ResponseInterface;
 use Psr\Log\LoggerInterface;
 
+//Impor Class Model
+use App\Models\UserModel;
+use App\Models\KartuModel;
+use App\Models\RoleModel;
+use App\Models\TransaksiModel;
+use App\Models\JenisTransaksiModel;
+use App\Models\StatusTransaksiModel;
+use App\Models\HargaModel;
+use Config\Services;
+
+
 /**
  * Class BaseController
  *
@@ -21,6 +32,14 @@ use Psr\Log\LoggerInterface;
  */
 abstract class BaseController extends Controller
 {
+    protected $userModel = UserModel::class;
+    protected $kartuModel = KartuModel::class;
+    protected $roleModel = RoleModel::class;
+    protected $transaksiModel = TransaksiModel::class;
+    protected $jenistransaksiModel = JenisTransaksiModel::class;
+    protected $statustransaksiModel = StatusTransaksiModel::class;
+    protected $hargaModel = HargaModel::class;
+    protected $pager;
     /**
      * Instance of the main Request object.
      *
@@ -48,11 +67,23 @@ abstract class BaseController extends Controller
      */
     public function initController(RequestInterface $request, ResponseInterface $response, LoggerInterface $logger)
     {
+        $this->userModel = new UserModel();
+        $this->kartuModel = new KartuModel();
+        $this->roleModel = new RoleModel();
+        $this->transaksiModel = new TransaksiModel();
+        $this->jenistransaksiModel = new JenisTransaksiModel();
+        $this->statustransaksiModel = new StatusTransaksiModel();
+        $this->hargaModel = new HargaModel();
+        $this->pager = Services::pager();
         // Do Not Edit This Line
         parent::initController($request, $response, $logger);
 
         // Preload any models, libraries, etc, here.
 
         // E.g.: $this->session = \Config\Services::session();
+
+        // Preload any models
+        // E.g.: $this->session = new session();
+
     }
 }
