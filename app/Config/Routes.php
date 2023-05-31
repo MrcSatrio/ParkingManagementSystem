@@ -35,6 +35,8 @@ $routes->get('/', 'Auth\Auth::index');
 $routes->post('/login', 'Auth\Auth::login');
 $routes->get('/logout', 'Auth\Auth::logout');
 $routes->post('/ceksaldo', 'Auth\Saldo::ceksaldo');
+$routes->get('berkas/download/(:num)', 'Admin\Berkas::download/$1');
+$routes->match(['get', 'post'], '/berkas/delete/(:num)', 'Admin\Berkas::delete/$1');
 //FORGOT
 $routes->get('/forgotpassword', 'Auth\Auth::forgot_password');
 $routes->match(['get', 'post'], '/passwordreset', 'Auth\Auth::password_reset');
@@ -67,6 +69,10 @@ $routes->group('admin', ['filter' => 'roleFilter'], function ($routes) {
     $routes->post('transaksi_approve', 'Admin\Transaksi::transaksi_approve');
     $routes->get('transaksi_riwayat', 'Admin\Transaksi::riwayat');
     //endTransaksi
+    // Pengumuman
+    $routes->get('form_upload', 'Admin\Berkas::create');
+    $routes->post('save_pengumuman', 'Admin\Berkas::save');
+    $routes->get('listPengumuman', 'Admin\Berkas::readBerkas');
 });
 //role keuangan
 $routes->group('keuangan', ['filter' => 'roleFilter'], function ($routes) {
@@ -79,6 +85,11 @@ $routes->group('keuangan', ['filter' => 'roleFilter'], function ($routes) {
     //endtopbar
     $routes->get('create', 'Keuangan\User::create');
     $routes->post('insert', 'Admin\User::userInsert');
+    // Pengumuman
+    $routes->get('form_upload', 'Keuangan\Berkas::create');
+    $routes->post('save_pengumuman', 'Keuangan\Berkas::save');
+    $routes->get('listPengumuman', 'Keuangan\Berkas::readBerkas');
+    
 });
 //role operator
 $routes->group('operator', ['filter' => 'roleFilter'], function ($routes) {
@@ -90,7 +101,7 @@ $routes->group('operator', ['filter' => 'roleFilter'], function ($routes) {
     $routes->post('update_profil', 'Admin\Profile::updateProfil');
     //endtopbar
     //parkir
-
+    $routes->post('check-out', 'Operator\CheckOut::index');
     //endParkir
 });
 //role user
@@ -111,6 +122,8 @@ $routes->group('user', ['filter' => 'roleFilter'], function ($routes) {
     $routes->post('transaksi_kartuHilang', 'Admin\Transaksi::transaksi_kartuHilang');
     $routes->get('transaksi_result/(:any)/(:num)', 'Admin\Transaksi::transaksi_result/$1/$2');
     //endKartuhilang
+    // Pengumuman
+    $routes->get('pengumuman', 'User\Pengumuman::readBerkas');
 });
 //endFilters
 /*

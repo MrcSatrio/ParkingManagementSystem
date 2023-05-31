@@ -60,7 +60,7 @@
 
     <!-- Nav Item - Tables -->
     <li class="nav-item">
-        <a class="nav-link" href="<?= base_url(); ?>admin/pengumuman">
+        <a class="nav-link" href="<?= base_url(); ?>keuangan/form_upload">
             <i class="fas fa-bullhorn"></i>
             <span>Pengumuman</span></a>
     </li>
