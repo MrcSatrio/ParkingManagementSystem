@@ -25,38 +25,45 @@ class User extends BaseController
         return view('r_admin/userCreate', $data);
     }
     public function userInsert()
-    {
-        if (!$this->validate([
-            'npm' => [
-                'rules' => 'required|numeric|min_length[10]|max_length[10]|is_unique[user.npm]',
-                'errors' => [
-                    'required' => 'Nomor Pokok tidak boleh kosong',
-                    'numeric' => 'Nomor Pokok harus berupa angka',
-                    'min_length' => 'Nomor Pokok harus terdiri dari 10 angka',
-                    'max_length' => 'Nomor Pokok tidak lebih dari 10 angka',
-                    'is_unique' => 'Nomor Pokok telah digunakan',
-                ]
-            ],
-            'email' => [
-                'rules' => 'required|is_unique[user.email]',
-                'errors' => [
-                    'required' => 'Email tidak boleh kosong',
-                    'is_unique' => 'Email telah digunakan',
-                ]
-            ],
-            'password' => [
-                'rules' => 'required|min_length[8]|max_length[255]',
-                'errors' => [
-                    'required' => 'Password tidak boleh kosong',
-                    'min_length' => 'Password harus terdiri dari 8 karakter atau lebih',
-                    'max_length' => 'Password harus terdiri dari 255 karakter atau lebih',
-                    //'regex_match' => 'Password harus mengandung setidaknya satu huruf besar',
-                ]
-            ],
-        ])) {
-            session()->setFlashdata('error', $this->validator->listErrors());
-            return redirect()->back()->withInput();
-        }
+{
+    $validationRules = [
+        'npm' => [
+            'rules' => 'required|numeric|exact_length[10]|is_unique[user.npm]',
+            'errors' => [
+                'required' => 'Nomor Pokok tidak boleh kosong',
+                'numeric' => 'Nomor Pokok harus berupa angka',
+                'exact_length' => 'Nomor Pokok harus terdiri dari 10 angka',
+                'is_unique' => 'Nomor Pokok telah digunakan',
+            ]
+        ],
+        'email' => [
+            'rules' => 'required|is_unique[user.email]',
+            'errors' => [
+                'required' => 'Email tidak boleh kosong',
+                'is_unique' => 'Email telah digunakan',
+            ]
+        ],
+        'password' => [
+            'rules' => 'required|min_length[8]|max_length[255]',
+            'errors' => [
+                'required' => 'Password tidak boleh kosong',
+                'min_length' => 'Password harus terdiri dari 8 karakter atau lebih',
+                'max_length' => 'Password harus terdiri dari 255 karakter atau lebih',
+                //'regex_match' => 'Password harus mengandung setidaknya satu huruf besar',
+            ]
+        ],
+    ];
+
+    if ($this->request->getVar('npm') && strlen($this->request->getVar('npm')) > 10) {
+        $validationRules['npm']['rules'] .= '|max_length[10]';
+        $validationRules['npm']['errors']['max_length'] = 'Nomor Pokok tidak lebih dari 10 angka';
+    }
+
+    if (!$this->validate($validationRules)) {
+        session()->setFlashdata('error', $this->validator->listErrors());
+        return redirect()->back()->withInput();
+    }
+
 
         $npm = $this->request->getVar('npm');
         $password = $npm;
@@ -102,4 +109,51 @@ class User extends BaseController
 
         return view('r_admin/userRead', $data);
     }
+    public function userDelete($npm)
+    {
+        $this->userModel->where('npm', $npm)->delete();
+        $session = session();
+        session()->setFlashdata('hapus', '<br>');
+        return redirect()->to(base_url('admin/read'));
+    }
+    public function userUpdate($npm)
+    {
+        {
+            $data =
+                [
+                    'title' => 'Parking Management System',
+                    'user' => $this->userModel
+                    ->join('role', 'role.id_role = user.id_role')
+                    ->join('kartu', 'kartu.id_kartu = user.id_kartu')
+                    ->where('npm', $npm)
+                    ->first(),
+                ];
+    
+            return view('r_admin/userUpdate', $data);
+        }}
+
+
+
+        public function userEdit($npm)
+{
+    $data = $this->request->getPost();
+    $user = $this->userModel
+        ->join('role', 'role.id_role = user.id_role')
+        ->join('kartu', 'kartu.id_kartu = user.id_kartu')
+        ->where('npm', $npm)
+        ->first();
+
+    if ($user) {
+        $this->userModel->update($user['npm'], $data); // Menggunakan id dari user untuk update data
+        session()->setFlashdata('berhasil', '<br>');
+        
+        // Misalkan Anda ingin juga melakukan update pada model kartu
+        $this->kartuModel->update($user['id_kartu'], $data); // Menggunakan id_kartu dari user untuk update data pada model kartu
+    } else {
+        session()->setFlashdata('gagal', '<br>');
+    }
+
+    return redirect()->to('admin/read');
+}
+
 }

@@ -25,9 +25,9 @@ $this->section('content'); ?>
                                         <?php echo session()->getFlashdata('error'); ?>
                                     </div>
                                 <?php endif; ?>
-                                <form action="/passwordreset" method="post" class="user">
+                                <form action="<?= base_url() ?>passwordreset" method="post" class="user">
                                     <div class="form-group">
-                                        <input type="email" class="form-control form-control-user" name="email" placeholder="Masukan Email Anda">
+                                        <input type="email" class="form-control form-control-user" name="email" placeholder="Masukan Email Anda" required>
                                     </div>
                                     <button type="submit" class="btn btn-primary btn-user btn-block">
                                         Kirim Kode
@@ -35,7 +35,7 @@ $this->section('content'); ?>
                                 </form>
                                 <hr>
                                 <div class="text-center">
-                                    <a class="small" href="/">Kembali login</a>
+                                    <a class="small" href="<?= base_url() ?>">Kembali login</a>
                                 </div>
                             </div>
                         </div>

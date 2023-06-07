@@ -6,15 +6,15 @@
         <div class="col-md-6">
             <div class="card">
                 <div class="card-header">
-                    <h2 class="text-center">KODE BOOKING</h2>
+                    <h2 class="text-center">KODE PEMESANAN</h2>
                 </div>
                 <div class="card-body">
                     <div class="mb-3">
                         <br>
-                        <label for="saldo" class="form-label">kode Booking:</label> <br>
+                        <label for="saldo" class="form-label">kode Pemesanan:</label> <br>
                         <label>
                             <h1>
-                                <p><?= $booking_code ?><button id="copyButton" class="btn"><img src="/assets/img/kopi.png" width="24px"></button></p>
+                                <p><?= $booking_code ?><button id="copyButton" class="btn"><img src="<?= base_url() ?>assets/img/kopi.png" width="24px"></button></p>
                             </h1>
                         </label>
                     </div>
@@ -31,7 +31,7 @@
                     </div>
                     <br>
                     <!-- kembali ke halaman sebelumnya -->
-                    <a href="<?= base_url() ?>user/transaksi_riwayat" class="btn btn-primary btn-block">Kembali</a>
+                    <a href="<?= base_url() ?>user/riwayatTransaksi" class="btn btn-primary btn-block">Kembali</a>
                 </div>
                 <script>
                     document.getElementById("copyButton").addEventListener("click", function() {

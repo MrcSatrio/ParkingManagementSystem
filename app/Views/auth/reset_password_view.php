@@ -36,7 +36,7 @@ $this->section('content'); ?>
                                     </div>
                                 <?php endif; ?>
 
-                                <form action="/updatepassword" method="post" class="user">
+                                <form action="<?= base_url() ?>updatepassword" method="post" class="user">
                                     <div class="form-group">
                                         <input type="text" class="form-control form-control-user" name="token" placeholder="Input Token">
                                     </div>

@@ -1,7 +1,13 @@
 <?= $this->extend('template/index');
 
 $this->section('page_content'); ?>
-
+            <?php if (!empty(session()->getFlashdata('berhasil'))  ) : ?>
+                <div class="alert alert-success" role="success">
+                    <h4>Data Berhasil Diubah</h4>
+                    </hr>
+                    <?php echo session()->getFlashdata('berhasil'); ?>
+                </div>
+            <?php endif; ?>
 <div class="card mx-5 shadow">
     <div class="card-header">
         Users List
@@ -30,7 +36,7 @@ $this->section('page_content'); ?>
                             <td><?= $u['nama']; ?></td>
                             <td><?= $u['email']; ?></td>
                             <td><?= $u['nomor_kartu']; ?></td>
-                            <td>Rp<?= $u['saldo']; ?></td>
+                            <td>Rp<?= number_format($u['saldo']); ?></td>
                             <td>
                                 <?php
                                 switch ($u['id_role']) {
@@ -56,9 +62,8 @@ $this->section('page_content'); ?>
                                         <span class="sr-only">Toggle Dropdown</span>
                                     </button>
                                     <div class="dropdown-menu shadow">
-                                        <a class="dropdown-item" href="<?= base_url(); ?>admin/delete/<?= $u['npm']; ?>">Hapus</a>
-                                        <div class="dropdown-divider"></div>
-                                        <a class="dropdown-item" href="#">Jadikan Admin</a>
+                                    <a class="dropdown-item" href="<?= base_url(); ?>admin/delete/<?= $u['npm']; ?>" onclick="return confirm('Apakah Anda yakin ingin menghapus data ini?')">Hapus</a>
+
                                     </div>
                                 </div>
                             </td>

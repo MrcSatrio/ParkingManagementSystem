@@ -2,11 +2,10 @@
 
     <!-- Sidebar - Brand -->
     <a class="sidebar-brand d-flex align-items-center justify-content-center" href="<?= base_url(); ?>admin/dashboard">
-        <div class="sidebar-brand-icon rotate-n-15">
-            <i class="fas fa-copyright"></i>
-        </div>
-        <div class="sidebar-brand-text mx-3">SI21A</div>
-    </a>
+  <div class="sidebar-brand-icon">
+    <img src="<?= base_url() ?>assets/img/pipiw.png" style="width: 150px; height: 100px;">
+  </div>
+</a>
 
 
     <!-- Divider -->
@@ -27,12 +26,12 @@
 
     <!-- Nav Item Tambah Data Pengguna -->
     <li class="nav-item">
-        <a class="nav-link" href="<?= base_url(); ?>admin/read">
+        <a class="nav-link" href="<?= base_url(); ?>keuangan/read">
             <i class="fa fa-users"></i>
             <span>Users List</span></a>
     </li>
     <li class="nav-item">
-        <a class="nav-link" href="<?= base_url($user['nama_role']); ?>/create">
+        <a class="nav-link" href="<?= base_url(); ?>keuangan/create">
             <i class="fa fa-user-plus"></i>
             <span>Tambah User</span></a>
     </li>
@@ -45,12 +44,12 @@
     </div>
 
     <li class="nav-item">
-        <a class="nav-link" href="<?= base_url(); ?>admin/transaksi_inputkodebooking">
+        <a class="nav-link" href="<?= base_url(); ?>keuangan/transaksi_inputkodebooking">
             <i class="bi bi-input-cursor"></i>
             <span>Input Kode Booking</span></a>
     </li>
     <li class="nav-item">
-        <a class="nav-link" href="<?= base_url(); ?>admin/transaksi_riwayat">
+        <a class="nav-link" href="<?= base_url(); ?>keuangan/transaksi_riwayat">
             <i class="fas fa-clock"></i>
             <span>Riwayat Transaksi</span></a>
     </li>
@@ -60,7 +59,7 @@
 
     <!-- Nav Item - Tables -->
     <li class="nav-item">
-        <a class="nav-link" href="<?= base_url(); ?>admin/pengumuman">
+        <a class="nav-link" href="<?= base_url(); ?>keuangan/form_upload">
             <i class="fas fa-bullhorn"></i>
             <span>Pengumuman</span></a>
     </li>
