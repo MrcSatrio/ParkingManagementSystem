@@ -50,8 +50,13 @@ $this->section('page_content'); ?>
                             <td width="200px"><?= $row->keterangan; ?>
                             </td>
                             <td><a class=" btn btn-info"
+<<<<<<< HEAD
                                     href="<?= base_url(); ?>berkas/download/<?= $row->id_berkas; ?>">Download</a>
                                 <form action="<?= base_url(); ?>admin/berkas/delete/<?= $row->id_berkas; ?>" method="POST"
+=======
+                                    href="<?= base_url(); ?>/berkas/download/<?= $row->id_berkas; ?>">Download</a>
+                                <form action="<?= base_url(); ?>/berkas/delete/<?= $row->id_berkas; ?>" method="POST"
+>>>>>>> dbb67e3273eef7bff4a1fc456c3cc1b6c9ba7636
                                     style="display: inline;">
                                     <button class="btn btn-danger" type="submit"
                                         onclick="return confirm('Apakah Anda yakin ingin menghapus berkas ini?')">Delete</button>

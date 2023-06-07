@@ -36,7 +36,11 @@ $routes->post('/login', 'Auth\Auth::login');
 $routes->get('/logout', 'Auth\Auth::logout');
 $routes->post('/ceksaldo', 'Auth\Saldo::ceksaldo');
 $routes->get('berkas/download/(:num)', 'Admin\Berkas::download/$1');
+<<<<<<< HEAD
 
+=======
+$routes->match(['get', 'post'], '/berkas/delete/(:num)', 'Admin\Berkas::delete/$1');
+>>>>>>> dbb67e3273eef7bff4a1fc456c3cc1b6c9ba7636
 //FORGOT
 $routes->get('/forgotpassword', 'Auth\Auth::forgot_password');
 $routes->match(['get', 'post'], '/passwordreset', 'Auth\Auth::password_reset');
@@ -74,7 +78,10 @@ $routes->group('admin', ['filter' => 'roleFilter'], function ($routes) {
     $routes->get('form_upload', 'Admin\Berkas::create');
     $routes->post('save_pengumuman', 'Admin\Berkas::save');
     $routes->get('listPengumuman', 'Admin\Berkas::readBerkas');
+<<<<<<< HEAD
     $routes->match(['get', 'post'], 'berkas/delete/(:num)', 'Admin\Berkas::delete/$1');
+=======
+>>>>>>> dbb67e3273eef7bff4a1fc456c3cc1b6c9ba7636
 });
 //role keuangan
 $routes->group('keuangan', ['filter' => 'roleFilter'], function ($routes) {
@@ -92,7 +99,10 @@ $routes->group('keuangan', ['filter' => 'roleFilter'], function ($routes) {
     $routes->get('form_upload', 'Keuangan\Berkas::create');
     $routes->post('save_pengumuman', 'Keuangan\Berkas::save');
     $routes->get('listPengumuman', 'Keuangan\Berkas::readBerkas');
+<<<<<<< HEAD
     $routes->match(['get', 'post'], 'berkas/delete/(:num)', 'Keuangan\Berkas::delete/$1');
+=======
+>>>>>>> dbb67e3273eef7bff4a1fc456c3cc1b6c9ba7636
         //Transaksi
         //Transaksi
         $routes->get('transaksi_inputkodebooking', 'Keuangan\Transaksi::transaksi_inputkodebooking');

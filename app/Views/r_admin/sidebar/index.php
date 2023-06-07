@@ -58,7 +58,11 @@
 
     <!-- Nav Item - Tables -->
     <li class="nav-item">
+<<<<<<< HEAD
         <a class="nav-link" href="<?= base_url(); ?>admin/listPengumuman">
+=======
+        <a class="nav-link" href="<?= base_url(); ?>admin/form_upload">
+>>>>>>> dbb67e3273eef7bff4a1fc456c3cc1b6c9ba7636
             <i class="fas fa-bullhorn"></i>
             <span>Pengumuman</span></a>
     </li>
