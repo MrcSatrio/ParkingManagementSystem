@@ -32,7 +32,7 @@ class CheckOut extends BaseController
             session()->setFlashdata('error', $this->validator->listErrors());
             return redirect()->back()->withInput();
         } else {
-            if ($user_parking['saldo'] <= $nomimal_transaksi) {
+            if ($user_parking['saldo'] < $nomimal_transaksi) {
                 session()->setFlashdata('error', 'Saldo Tidak Cukup');
                 return redirect()->back()->withInput();
             } else {

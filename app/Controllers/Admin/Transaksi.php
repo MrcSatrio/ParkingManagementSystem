@@ -45,6 +45,10 @@ class Transaksi extends BaseController
             session()->setFlashdata('error', 'Maaf, Kode Booking Sudah Tervalidasi');
             return redirect()->back();
         }
+        elseif ($status_nama == 'COMPLETE') {
+            session()->setFlashdata('error', 'Maaf, Kode Booking Tidak Ditemukan. Harap masukkan data dengan benar atau periksa kembali kode yang dimasukkan.');
+            return redirect()->back();
+        }
 
         $harga = $this->hargaModel->where('nama_harga', 'kartu_hilang')->first();
         $total_harga = $databook['nominal_transaksi'] + $harga['nominal'];

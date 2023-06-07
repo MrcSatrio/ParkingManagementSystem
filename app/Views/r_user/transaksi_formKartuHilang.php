@@ -53,7 +53,7 @@ $this->section('page_content'); ?>
                     </div>
                     <div class="col-sm-9">
                         <br>
-                        <button type="button" onclick="validateBooking()" class="btn btn-primary btn-block">Buat Kartu</button>
+                        <button class="btn btn-primary btn-block">Buat Kartu</button>
                         <script>
                             function validateBooking() {
                                 Swal.fire({

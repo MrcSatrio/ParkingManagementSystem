@@ -100,7 +100,7 @@ class Berkas extends BaseController
 			session()->setFlashdata('error', 'Berkas tidak ditemukan.');
 		}
 
-        return redirect()->to(base_url('/admin/listPengumuman'));
+        return redirect()->to(base_url('admin/listPengumuman'));
     }
 
 }

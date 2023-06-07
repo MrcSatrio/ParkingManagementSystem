@@ -25,34 +25,45 @@ $this->section('page_content'); ?>
                             </tr>
                         </thead>
                         <tbody>
-                            <?php $i = 1; ?>
-                            <?php foreach ($transaksi as $tr) : ?>
-                                <tr>
-                                    <td><?= $i++; ?></td>
-                                    <td><?= $tr['kodebooking_transaksi']; ?></td>
-                                    <td><?= $tr['npm']; ?></td>
-                                    <td>
-                                        <?php if ($tr['id_jenis_transaksi'] == 1) : ?>
-                                            <span class="badge badge-info"><?= $tr['nama_jenis_transaksi']; ?></span>
-                                        <?php elseif ($tr['id_jenis_transaksi'] == 2) : ?>
-                                            <span class="badge badge-warning"><?= $tr['nama_jenis_transaksi']; ?></span>
-                                        <?php elseif ($tr['id_jenis_transaksi'] == 3) : ?>
-                                            <span class="badge badge-success"><?= $tr['nama_jenis_transaksi']; ?></span>
-                                        <?php endif ?>
-                                    </td>
-                                    <td><?= $tr['saldoawal_transaksi']; ?></td>
-                                    <td><?= $tr['nominal_transaksi']; ?></td>
-                                    <td><?= $tr['saldoakhir_transaksi']; ?></td>
-                                    <td>
-                                        <?php if ($tr['id_status_transaksi'] == 1) : ?>
-                                            <span class="badge badge-danger"><?= $tr['nama_status_transaksi']; ?></span>
-                                        <?php else : ?>
-                                            <span class="badge badge-success"><?= $tr['nama_status_transaksi']; ?></span>
-                                        <?php endif ?>
-                                    </td>
-                                    <td><?= $tr['updated_at']; ?></td>
-                                </tr>
-                            <?php endforeach; ?>
+                        <?php
+// Mengurutkan array transaksi berdasarkan created_at terbaru
+usort($transaksi, function($a, $b) {
+    return strtotime($b['created_at']) - strtotime($a['created_at']);
+});
+
+$i = 1; // Variabel penomoran
+
+foreach ($transaksi as $tr) :
+?>
+    <tr>
+        <td><?= $i++; ?></td>
+        <td><?= $tr['kodebooking_transaksi']; ?></td>
+        <td><?= $tr['npm']; ?></td>
+        <td>
+            <?php if ($tr['id_jenis_transaksi'] == 1) : ?>
+                <span class="badge badge-info"><?= $tr['nama_jenis_transaksi']; ?></span>
+            <?php elseif ($tr['id_jenis_transaksi'] == 2) : ?>
+                <span class="badge badge-warning"><?= $tr['nama_jenis_transaksi']; ?></span>
+            <?php elseif ($tr['id_jenis_transaksi'] == 3) : ?>
+                <span class="badge badge-success"><?= $tr['nama_jenis_transaksi']; ?></span>
+            <?php endif ?>
+        </td>
+        <td><?= number_format($tr['saldoawal_transaksi']); ?></td>
+        <td><?= number_format($tr['nominal_transaksi']); ?></td>
+        <td><?= number_format($tr['saldoakhir_transaksi']); ?></td>
+        <td>
+            <?php if ($tr['id_status_transaksi'] == 1) : ?>
+                <span class="badge badge-danger"><?= $tr['nama_status_transaksi']; ?></span>
+            <?php else : ?>
+                <span class="badge badge-success"><?= $tr['nama_status_transaksi']; ?></span>
+            <?php endif ?>
+        </td>
+        <td><?= $tr['updated_at']; ?></td>
+    </tr>
+<?php
+endforeach;
+?>
+
                         </tbody>
                     </table>
                     <?= $pager; ?>

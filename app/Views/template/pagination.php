@@ -1,4 +1,4 @@
-<?php $pager->setSurroundCount(2) ?>
+<?php $pager->setSurroundCount(2); ?>
 
 <nav aria-label="Page navigation">
     <ul class="pagination">
@@ -13,7 +13,7 @@
                     <span aria-hidden="true"><?= lang('Pager.previous') ?></span>
                 </a>
             </li>
-        <?php endif ?>
+        <?php endif; ?>
 
         <?php foreach ($pager->links() as $link) : ?>
             <li class="page-item <?= $link['active'] ? 'active' : '' ?>">
@@ -21,7 +21,7 @@
                     <?= $link['title'] ?>
                 </a>
             </li>
-        <?php endforeach ?>
+        <?php endforeach; ?>
 
         <?php if ($pager->hasNext()) : ?>
             <li class="page-item">
@@ -34,6 +34,6 @@
                     <span aria-hidden="true"><?= lang('Pager.last') ?></span>
                 </a>
             </li>
-        <?php endif ?>
+        <?php endif; ?>
     </ul>
 </nav>

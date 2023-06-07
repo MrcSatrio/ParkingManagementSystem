@@ -35,9 +35,14 @@ $this->section('content'); ?>
                                         <?php echo session()->getFlashdata('salah'); ?>
                                     </div>
                                 <?php endif; ?>
+                                <?php if (session()->getFlashdata('success')) : ?>
+                                    <div class="alert alert-danger">
+                                        <?php echo session()->getFlashdata('success'); ?>
+                                    </div>
+                                <?php endif; ?>
                                 <form class="user" method="post" action="<?php echo base_url('/login') ?>">
                                     <div class="form-group">
-                                        <input type="text" class="form-control form-control-user" name="npm" placeholder="Npm" required>
+                                        <input type="text" class="form-control form-control-user" name="npm" placeholder="Username" required>
                                     </div>
                                     <div class="form-group">
                                         <input type="password" class="form-control form-control-user" name="password" placeholder="Password" required>

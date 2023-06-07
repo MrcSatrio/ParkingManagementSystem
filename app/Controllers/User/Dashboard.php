@@ -3,7 +3,7 @@
 namespace App\Controllers\User;
 
 use \App\Controllers\BaseController;
-
+use App\Models\PengumumanModel;
 class Dashboard extends BaseController
 {
     protected $transaksiModel;
@@ -32,8 +32,10 @@ class Dashboard extends BaseController
                     ->join('status_transaksi', 'status_transaksi.id_status_transaksi = transaksi.id_status_transaksi')
                     ->where('transaksi.npm', session('npm'))
                     ->findAll(),
+                'role' => $this->roleModel->findAll()
             ];
-
+            $berkasModel = new PengumumanModel();
+            $data['berkas'] = $berkasModel->findAll();
         return view('r_user/dashboard', $data);
     }
 }
