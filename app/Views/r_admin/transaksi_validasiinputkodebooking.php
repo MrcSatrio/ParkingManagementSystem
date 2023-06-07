@@ -46,11 +46,11 @@ $this->section('page_content'); ?>
                             </tr>
                             <tr>
                                 <td>Nominal</td>
-                                <td><?= $transaksi['nominal_transaksi']; ?></td>
+                                <td><?= 'Rp ' . number_format($transaksi['nominal_transaksi'], 0, ',', '.'); ?></td>
                             </tr>
                             <tr>
                                 <td>Saldo Akhir</td>
-                                <td><?= $transaksi['saldoakhir_transaksi']; ?></td>
+                                <td><?= 'Rp ' . number_format($transaksi['saldoakhir_transaksi'], 0, ',', '.'); ?></td>
                             </tr>
                             <tr class="table-active">
                                 <td>Total Bayar</td>
@@ -58,7 +58,7 @@ $this->section('page_content'); ?>
                                     <?php if ($transaksi['id_jenis_transaksi'] == 2) : ?>
                                         <?= $total_harga = $harga ?>
                                     <?php else : ?>
-                                        <?= $total_harga = $transaksi['nominal_transaksi']; ?>
+                                        <?= 'Rp ' . number_format($total_harga = $transaksi['nominal_transaksi'], 0, ',', '.'); ?>
                                     <?php endif ?>
                                 </th>
                             </tr>

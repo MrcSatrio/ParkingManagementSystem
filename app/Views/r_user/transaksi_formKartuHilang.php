@@ -19,16 +19,17 @@ $this->section('page_content'); ?>
                 <form action="<?= base_url() ?>user/transaksi_kartuHilang" method="post">
                     <div class="form-group">
                         <label for="exampleInputEmail1">Nomor Pokok Mahasiswa</label>
-                        <input type="text" class="form-control" value="<?= $user['npm'] ?>" disabled>
+                        <input type="text" class="form-control" value="<?= $user['npm'] ?>" readonly>
                     </div>
                     <div class="mb-3">
                         <br>
                         <label for="saldo" class="form-label">Isi Saldo:</label>
-                        <select class="custom-select" name="nominal_transaksi" required>
+                        <select class="custom-select" name="nominal_transaksi" required aria-readonly="true">
                             <option selected>Pilih nominal...</option>
-                            <option value="50000">50.000</option>
-                            <option value="75000">75.000</option>
-                            <option value="90000">90.000</option>
+                            <option value="0">Rp 0</option>
+                            <option value="50000">Rp 50.000</option>
+                            <option value="75000">Rp 75.000</option>
+                            <option value="90000">Rp 90.000</option>
                         </select>
                     </div>
                     <div class="mb-3">

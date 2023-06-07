@@ -29,7 +29,7 @@
                             <td><?= $u['nama']; ?></td>
                             <td><?= $u['email']; ?></td>
                             <td><?= $u['nomor_kartu']; ?></td>
-                            <td>Rp<?= $u['saldo']; ?></td>
+                            <td>Rp<?= number_format($u['saldo'], 0, ',', '.'); ?></td>
                             <td>
                                 <?php
                                 switch ($u['id_role']) {

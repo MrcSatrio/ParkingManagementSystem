@@ -45,13 +45,10 @@ class Transaksi extends BaseController
             session()->setFlashdata('error', 'Maaf, Kode Booking Sudah Tervalidasi');
             return redirect()->back();
         }
-<<<<<<< HEAD
         elseif ($status_nama == 'COMPLETE') {
             session()->setFlashdata('error', 'Maaf, Kode Booking Tidak Ditemukan. Harap masukkan data dengan benar atau periksa kembali kode yang dimasukkan.');
             return redirect()->back();
         }
-=======
->>>>>>> dbb67e3273eef7bff4a1fc456c3cc1b6c9ba7636
 
         $harga = $this->hargaModel->where('nama_harga', 'kartu_hilang')->first();
         $total_harga = $databook['nominal_transaksi'] + $harga['nominal'];
@@ -245,30 +242,27 @@ class Transaksi extends BaseController
         //  menampilkan hasil data booking code dan nominal saldo ke form transaksi_formResult
         return view('r_user/transaksi_formResult', $data);
     }
-<<<<<<< HEAD
-=======
-
     public function riwayat()
-    {
-        $limit = 9; // Jumlah item per halaman
-        $offset = $this->request->getVar('page') ? ($this->request->getVar('page') - 1) * $limit : 0;
-        $totalRows = $this->transaksiModel->countAllResults();
+{
+    $limit = 9; // Jumlah item per halaman
+    $offset = $this->request->getVar('page') ? ($this->request->getVar('page') - 1) * $limit : 0;
+    $totalRows = $this->transaksiModel->countAllResults();
 
-        $data =
-            [
-                'title' => 'Parking Management System',
-                'user' => $this->userModel
-                    ->join('role', 'role.id_role = user.id_role')
-                    ->where('npm', session('npm'))
-                    ->first(),
-                'transaksi' => $this->transaksiModel
-                    ->join('jenis_transaksi', 'jenis_transaksi.id_jenis_transaksi = transaksi.id_jenis_transaksi')
-                    ->join('status_transaksi', 'status_transaksi.id_status_transaksi = transaksi.id_status_transaksi')
-                    ->findAll($limit, $offset),
-                'pager' => $this->pager->makeLinks($offset, $limit, $totalRows, 'pagination')
-            ];
+    $data = [
+        'title' => 'Parking Management System',
+        'user' => $this->userModel
+            ->join('role', 'role.id_role = user.id_role')
+            ->where('npm', session('npm'))
+            ->first(),
+        'transaksi' => $this->transaksiModel
+            ->join('jenis_transaksi', 'jenis_transaksi.id_jenis_transaksi = transaksi.id_jenis_transaksi')
+            ->join('status_transaksi', 'status_transaksi.id_status_transaksi = transaksi.id_status_transaksi')
+            ->whereIn('transaksi.id_jenis_transaksi', [1, 2]) // Menggunakan whereIn untuk memfilter id_jenis_transaksi
+            ->findAll($limit, $offset),
+        'pager' => $this->pager->makeLinks($offset, $limit, $totalRows, 'pagination')
+    ];
 
-        return view('r_keuangan/transaksi_riwayat', $data);
-    }
->>>>>>> dbb67e3273eef7bff4a1fc456c3cc1b6c9ba7636
+    return view('r_keuangan/transaksi_riwayat', $data);
+}
+
 }

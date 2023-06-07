@@ -4,7 +4,7 @@ $this->section('page_content'); ?>
 
 <div class='container'>
     <div class='card shadow mx-5 '>
-        <h5 class="card-header">My Profile</h5>
+        <h5 class="card-header">Profile Saya</h5>
         <div class="card-body">
             <?php if (session()->getFlashdata('success')) : ?>
                 <div class="alert alert-success">
@@ -20,18 +20,12 @@ $this->section('page_content'); ?>
             <?php endif; ?>
             <form action="<?= base_url(); ?><?= $user['nama_role']; ?>/update_profil" method="post">
                 <div class="form-group row">
-                    <label class="col-sm-3 col-form-label">Nomor Pokok Mahasiswa</label>
-                    <div class="col-sm-9">
-                        <input type="text" class="form-control" name="npm" value="<?= $user['npm']; ?>" disabled><br>
-                    </div>
-                    <label class="col-sm-3 col-form-label">Nama Lengkap</label>
-                    <div class="col-sm-9">
-                        <input type="text" class="form-control form-control-user" name="nama" value="<?= $user['nama'] ?>" disabled><br>
-                    </div>
+                        <input type="hidden" class="form-control" name="npm" value="<?= $user['npm']; ?>" disabled><br>
+                        <input type="hidden" class="form-control form-control-user" name="nama" value="<?= $user['nama'] ?>" disabled><br>
                     <label class="col-sm-3 col-form-label">Email</label>
                     <div class="col-sm-9">
                         <input type="text" class="form-control form-control-user" name="email" value="<?= $user['email'] ?>">
-                    </div>
+            </div>
                     <div class="col-sm-12 mt-5 text-right">
                         <button type="submit" class="btn btn-primary col-sm-3">Ubah Email</button>
                     </div>

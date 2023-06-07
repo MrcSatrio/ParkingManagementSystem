@@ -86,9 +86,9 @@ foreach (array_slice($transaksi, 0, $limit) as $tr) :
                     <span class="badge badge-success"><?= $tr['nama_jenis_transaksi']; ?></span>
                 <?php endif ?>
             </td>
-            <td><?= $tr['saldoawal_transaksi']; ?></td>
-            <td><?= $tr['nominal_transaksi']; ?></td>
-            <td><?= $tr['saldoakhir_transaksi']; ?></td>
+            <td><?='Rp ' . number_format($tr['saldoawal_transaksi']); ?></td>
+        <td><?='Rp ' . number_format($tr['nominal_transaksi']); ?></td>
+        <td><?='Rp ' . number_format($tr['saldoakhir_transaksi']); ?></td>
             <td>
                 <?php if ($tr['id_status_transaksi'] == 1) : ?>
                     <span class="badge badge-danger"><?= $tr['nama_status_transaksi']; ?></span>

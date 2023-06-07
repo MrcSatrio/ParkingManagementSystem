@@ -33,9 +33,10 @@ usort($riwayat, function($a, $b) {
         <td><?= $i + 1; ?></td>
         <td><?= $tr['kodebooking_transaksi']; ?></td>
         <td><?= $tr['npm']; ?></td>
-        <td><?= $tr['saldoawal_transaksi']; ?></td>
-        <td><?= $tr['nominal_transaksi']; ?></td>
-        <td><?= $tr['saldoakhir_transaksi']; ?></td>
+        <td><?='Rp ' .number_format($tr['saldoawal_transaksi'], 0, ',', '.'); ?></td>
+<td><?='Rp ' . number_format($tr['nominal_transaksi'], 0, ',', '.'); ?></td>
+<td><?='Rp ' . number_format($tr['saldoakhir_transaksi'], 0, ',', '.'); ?></td>
+
         <td <?php if ($tr['id_status_transaksi'] == "2") { echo 'class="badge badge-success"'; } ?>>
             <?= ($tr['id_status_transaksi'] == "2") ? 'COMPLETE' : ''; ?>
         </td>
@@ -47,6 +48,7 @@ usort($riwayat, function($a, $b) {
 
                         </tbody>
                     </table>
+                    <?= $pager; ?>
                 </div>
             </div>
         </div>

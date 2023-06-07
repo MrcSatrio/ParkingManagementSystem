@@ -53,15 +53,17 @@ echo $this->section('page_content');
                             </tr>
                             <tr>
                                 <td>Nominal</td>
-                                <td><?= $transaksi['nominal_transaksi']; ?></td>
+                                <td><?= 'Rp ' . number_format($transaksi['nominal_transaksi'], 0, ',', '.'); ?></td>
+
                             </tr>
                             <tr>
                                 <td>Saldo Akhir</td>
-                                <td><?= $transaksi['saldoakhir_transaksi']; ?></td>
+                                <td><?= 'Rp ' . number_format($transaksi['saldoakhir_transaksi'], 0, ',', '.'); ?></td>
                             </tr>
                             <tr class="table-active">
                                 <td>Total</td>
-                                <th class="text-danger"><?= $harga; ?></th>
+                                <th class="text-danger"><?= 'Rp ' . number_format($harga, 0, ',', '.'); ?></th>
+
                             </tr>
                             <tr>
                                 <td>Tanggal Transaksi</td>
