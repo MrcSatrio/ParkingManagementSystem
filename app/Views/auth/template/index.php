@@ -22,7 +22,9 @@
 
 </head>
 
-<body class="bg-gradient-success">
+<body style="background-image: url(<?= base_url(); ?>assets/img/bg.jpg); background-size: cover;">
+
+
 
     <?= $this->renderSection('content'); ?>
 
@@ -35,6 +37,20 @@
 
     <!-- Custom scripts for all pages-->
     <script src="<?php base_url();?>assets/js/sb-admin-2.min.js"></script>
+
+    <style>
+    .password-field {
+        position: relative;
+    }
+
+    .toggle-password {
+        position: absolute;
+        right: 10px;
+        top: 50%;
+        transform: translateY(-50%);
+        cursor: pointer;
+    }
+</style>
 
 </body>
 

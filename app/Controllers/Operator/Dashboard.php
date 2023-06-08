@@ -10,6 +10,7 @@ class Dashboard extends BaseController
     protected $hargaModel;
     protected $transaksiModel;
     protected $roleModel;
+    protected $pager;
     public function index()
     {
         //tolong masukin di setiap method//
@@ -47,4 +48,17 @@ class Dashboard extends BaseController
 
         return view('r_operator/riwayat_transaksi_parkir', $data);
     }
+    public function modul()
+	{
+        $data =
+        [
+            'title' => 'Parking Management System',
+            'user' => $this->userModel
+                ->join('role', 'role.id_role = user.id_role')
+                ->where('npm', session('npm'))
+                ->first(),
+            'role' => $this->roleModel->findAll()
+        ];        
+		return view('r_operator/modul', $data);
+	}
 }

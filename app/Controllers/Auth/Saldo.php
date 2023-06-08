@@ -16,7 +16,7 @@ class Saldo extends BaseController
             ->first();
 
         if (!$saldo) {
-            session()->setFlashdata('salah', 'Maaf Transaksi Tidak Di Temukan.');
+            session()->setFlashdata('salah', 'Maaf NPM tidak Ditemukan.');
             return redirect()->back()->withInput();
         }
 

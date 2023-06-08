@@ -85,7 +85,7 @@
                         <span aria-hidden="true">×</span>
                     </button>
                 </div>
-                <div class="modal-body">apakah Anda Yakin Ingin Logout ?</div>
+                <div class="modal-body">Apakah Anda Yakin Ingin Logout ?</div>
                 <div class="modal-footer">
                     <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
                     <a class="btn btn-primary" href="<?= base_url(); ?>logout">Logout</a>

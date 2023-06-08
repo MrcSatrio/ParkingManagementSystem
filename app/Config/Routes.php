@@ -75,6 +75,7 @@ $routes->group('admin', ['filter' => 'roleFilter'], function ($routes) {
     $routes->post('save_pengumuman', 'Admin\Berkas::save');
     $routes->get('listPengumuman', 'Admin\Berkas::readBerkas');
     $routes->match(['get', 'post'], 'berkas/delete/(:num)', 'Admin\Berkas::delete/$1');
+    $routes->get('modul', 'Admin\Berkas::modul');
 });
 //role keuangan
 $routes->group('keuangan', ['filter' => 'roleFilter'], function ($routes) {
@@ -93,7 +94,8 @@ $routes->group('keuangan', ['filter' => 'roleFilter'], function ($routes) {
     $routes->post('save_pengumuman', 'Keuangan\Berkas::save');
     $routes->get('listPengumuman', 'Keuangan\Berkas::readBerkas');
     $routes->match(['get', 'post'], 'berkas/delete/(:num)', 'Keuangan\Berkas::delete/$1');
-        //Transaksi
+    $routes->get('modul', 'Keuangan\Berkas::modul');
+    //Transaksi
         //Transaksi
         $routes->get('transaksi_inputkodebooking', 'Keuangan\Transaksi::transaksi_inputkodebooking');
         $routes->post('transaksi_validasiinputkodebooking', 'Keuangan\Transaksi::transaksi_validasiinputkodebooking');
@@ -115,6 +117,7 @@ $routes->group('operator', ['filter' => 'roleFilter'], function ($routes) {
     //parkir
     $routes->post('check-out', 'Operator\CheckOut::index');
     //endParkir
+    $routes->get('modul', 'Operator\Dashboard::modul');
 });
 //role user
 $routes->group('user', ['filter' => 'roleFilter'], function ($routes) {
@@ -136,9 +139,11 @@ $routes->group('user', ['filter' => 'roleFilter'], function ($routes) {
     //endKartuhilang
     // Pengumuman
     $routes->get('pengumuman', 'User\Pengumuman::readBerkas');
+    $routes->get('modul', 'User\Pengumuman::modul');
             //RIwayat
             $routes->get('riwayatTransaksi', 'User\Riwayat::riwayat');
             //endriwayat
+
 });
 //endFilters
 /*

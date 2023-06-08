@@ -48,7 +48,7 @@ usort($riwayat, function($a, $b) {
 
                         </tbody>
                     </table>
-                    <?= $pager; ?>
+                     <?= $pager; ?>
                 </div>
             </div>
         </div>

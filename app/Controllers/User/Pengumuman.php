@@ -30,5 +30,17 @@ class Pengumuman extends BaseController
 		$data = $berkas->find($id);
 		return $this->response->download('uploads/berkas/' . $data->berkas, null);
 	}
-
+	public function modul()
+	{
+        $data =
+        [
+            'title' => 'Parking Management System',
+            'user' => $this->userModel
+                ->join('role', 'role.id_role = user.id_role')
+                ->where('npm', session('npm'))
+                ->first(),
+            'role' => $this->roleModel->findAll()
+        ];        
+		return view('r_user/modul', $data);
+    }
 }

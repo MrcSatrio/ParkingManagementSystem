@@ -102,5 +102,18 @@ class Berkas extends BaseController
 
         return redirect()->to(base_url('/keuangan/listPengumuman'));
     }
+	public function modul()
+	{
+        $data =
+        [
+            'title' => 'Parking Management System',
+            'user' => $this->userModel
+                ->join('role', 'role.id_role = user.id_role')
+                ->where('npm', session('npm'))
+                ->first(),
+            'role' => $this->roleModel->findAll()
+        ];        
+		return view('r_keuangan/modul', $data);
+	}
 
 }

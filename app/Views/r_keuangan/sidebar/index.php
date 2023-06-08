@@ -2,14 +2,14 @@
 
     <!-- Sidebar - Brand -->
     <a class="sidebar-brand d-flex align-items-center justify-content-center" href="<?= base_url(); ?>admin/dashboard">
-  <div class="sidebar-brand-icon">
+  <div class="sidebar-brand-icon mt-3">
     <img src="<?= base_url() ?>assets/img/pipiw.png" style="width: 150px; height: 100px;">
   </div>
 </a>
 
 
     <!-- Divider -->
-    <hr class="sidebar-divider my-0">
+    <hr class="sidebar-divider my-0 mt-2">
     <li class="nav-item active">
         <a class="nav-link" href="<?= base_url(); ?>admin/dashboard">
             <i class="fas fa-fw fa-tachometer-alt"></i>
@@ -62,6 +62,11 @@
         <a class="nav-link" href="<?= base_url(); ?>keuangan/listPengumuman">
             <i class="fas fa-bullhorn"></i>
             <span>Pengumuman</span></a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" href="<?= base_url(); ?>keuangan/modul">
+            <i class="fas fa-book"></i>
+            <span>Panduan Pengguna</span></a>
     </li>
 
 
