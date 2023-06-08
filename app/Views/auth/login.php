@@ -45,7 +45,7 @@
                                     </div>
                                     <div class="form-group">
                                         <div class="password-field">
-                                            <input id="password-field" type="password" class="form-control form-control-user" placeholder="Password" required>
+                                            <input id="password" type="password" class="form-control form-control-user" placeholder="Password" name="password" required>
                                             <span toggle="#password-field" class="fa fa-fw fa-eye field-icon toggle-password"></span>
                                         </div>
                                     </div>
@@ -95,7 +95,7 @@
 </div>
 
 <script>
-    var passwordField = document.getElementById("password-field");
+    var passwordField = document.getElementById("password");
     var togglePassword = document.querySelector(".toggle-password");
 
     togglePassword.addEventListener("click", function() {
