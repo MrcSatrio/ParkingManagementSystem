@@ -92,23 +92,26 @@ class User extends BaseController
     }
 
     public function userRead()
-    {
-        $limit = 5; // Jumlah item per halaman
-        $offset = $this->request->getVar('page') ? ($this->request->getVar('page') - 1) * $limit : 0;
-        $totalRows = $this->userModel->countAllResults();
+{
+    $limit = 9; // Jumlah item per halaman
+    $currentPage = $this->request->getVar('page_pagination') ? $this->request->getVar('page_pagination') : 1;
+    $totalRows = $this->userModel->countAllResults();
 
-        $data = [
-            'title' => 'Parking Management System',
-            'user' => $this->userModel
-                ->join('role', 'role.id_role = user.id_role')
-                ->where('npm', session('npm'))
-                ->first(),
-            'users' => $this->userModel->join('kartu', 'kartu.id_kartu = user.id_kartu')->findAll($limit, $offset),
-            'pager' => $this->pager->makeLinks($offset, $limit, $totalRows, 'pagination'),
-        ];
+    $data = [
+        'title' => 'Parking Management System',
+        'user' => $this->userModel
+            ->join('role', 'role.id_role = user.id_role')
+            ->where('npm', session('npm'))
+            ->first(),
+        'users' => $this->userModel->join('kartu', 'kartu.id_kartu = user.id_kartu')->paginate($limit, 'pagination'),
+        'pager' => $this->userModel->pager,
+        'currentPage' => $currentPage,
+        'limit' => $limit,
+    ];
 
-        return view('r_admin/userRead', $data);
-    }
+    return view('r_admin/userRead', $data);
+}
+
     public function userDelete($npm)
     {
         $this->userModel->where('npm', $npm)->delete();

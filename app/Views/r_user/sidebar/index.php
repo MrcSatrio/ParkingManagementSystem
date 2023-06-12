@@ -2,7 +2,7 @@
   <!-- Sidebar - Brand -->
   <a class="sidebar-brand d-flex align-items-center justify-content-center" href="<?= base_url($user['nama_role']); ?>/dashboard">
   <div class="sidebar-brand-icon mt-3">
-    <img src="<?= base_url() ?>assets/img/pipiw.png" style="width: 150px; height: 100px;">
+  <img src="<?= base_url() ?>assets/img/png.png" style="width: 150px; height: 150px;">
   </div>
 </a>
 

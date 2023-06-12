@@ -243,26 +243,32 @@ class Transaksi extends BaseController
         return view('r_user/transaksi_formResult', $data);
     }
     public function riwayat()
-{
-    $limit = 9; // Jumlah item per halaman
-    $offset = $this->request->getVar('page') ? ($this->request->getVar('page') - 1) * $limit : 0;
-    $totalRows = $this->transaksiModel->countAllResults();
+    {
+        $limit = 9; // Jumlah item per halaman
+        $currentPage = $this->request->getVar('page_pagination') ? $this->request->getVar('page_pagination') : 1;
 
-    $data = [
-        'title' => 'Parking Management System',
-        'user' => $this->userModel
-            ->join('role', 'role.id_role = user.id_role')
-            ->where('npm', session('npm'))
-            ->first(),
-        'transaksi' => $this->transaksiModel
-            ->join('jenis_transaksi', 'jenis_transaksi.id_jenis_transaksi = transaksi.id_jenis_transaksi')
-            ->join('status_transaksi', 'status_transaksi.id_status_transaksi = transaksi.id_status_transaksi')
-            ->whereIn('transaksi.id_jenis_transaksi', [1, 2]) // Menggunakan whereIn untuk memfilter id_jenis_transaksi
-            ->findAll($limit, $offset),
-        'pager' => $this->pager->makeLinks($offset, $limit, $totalRows, 'pagination')
-    ];
+        $data =
+            [
+                'title' => 'Parking Management System',
+                'user' => $this->userModel
+                    ->join('role', 'role.id_role = user.id_role')
+                    ->where('npm', session('npm'))
+                    ->first(),
+                'transaksi' => $this->transaksiModel
+                    ->join('jenis_transaksi', 'jenis_transaksi.id_jenis_transaksi = transaksi.id_jenis_transaksi')
+                    ->join('status_transaksi', 'status_transaksi.id_status_transaksi = transaksi.id_status_transaksi')
+                    ->orderBy('updated_at', 'DESC')
+                    ->paginate($limit, 'pagination'),
+                'pager' => $this->transaksiModel
+                    ->join('jenis_transaksi', 'jenis_transaksi.id_jenis_transaksi = transaksi.id_jenis_transaksi')
+                    ->join('status_transaksi', 'status_transaksi.id_status_transaksi = transaksi.id_status_transaksi')
+                    ->orderBy('created_at', 'DESC')
+                    ->pager,
+                'currentPage' => $currentPage,
+                'limit' => $limit,
+            ];
 
-    return view('r_keuangan/transaksi_riwayat', $data);
-}
+        return view('r_keuangan/transaksi_riwayat', $data);
+    }
 
 }

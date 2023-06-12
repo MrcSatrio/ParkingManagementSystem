@@ -44,8 +44,7 @@ class Transaksi extends BaseController
         if ($status_nama == 'APPROVED') {
             session()->setFlashdata('error', 'Maaf, Kode Booking Sudah Tervalidasi');
             return redirect()->back();
-        }
-        elseif ($status_nama == 'COMPLETE') {
+        } elseif ($status_nama == 'COMPLETE') {
             session()->setFlashdata('error', 'Maaf, Kode Booking Tidak Ditemukan. Harap masukkan data dengan benar atau periksa kembali kode yang dimasukkan.');
             return redirect()->back();
         }
@@ -246,8 +245,7 @@ class Transaksi extends BaseController
     public function riwayat()
     {
         $limit = 9; // Jumlah item per halaman
-        $offset = $this->request->getVar('page') ? ($this->request->getVar('page') - 1) * $limit : 0;
-        $totalRows = $this->transaksiModel->countAllResults();
+        $currentPage = $this->request->getVar('page_pagination') ? $this->request->getVar('page_pagination') : 1;
 
         $data =
             [
@@ -259,8 +257,15 @@ class Transaksi extends BaseController
                 'transaksi' => $this->transaksiModel
                     ->join('jenis_transaksi', 'jenis_transaksi.id_jenis_transaksi = transaksi.id_jenis_transaksi')
                     ->join('status_transaksi', 'status_transaksi.id_status_transaksi = transaksi.id_status_transaksi')
-                    ->findAll($limit, $offset),
-                'pager' => $this->pager->makeLinks($offset, $limit, $totalRows, 'pagination')
+                    ->orderBy('created_at', 'DESC')
+                    ->paginate($limit, 'pagination'),
+                'pager' => $this->transaksiModel
+                    ->join('jenis_transaksi', 'jenis_transaksi.id_jenis_transaksi = transaksi.id_jenis_transaksi')
+                    ->join('status_transaksi', 'status_transaksi.id_status_transaksi = transaksi.id_status_transaksi')
+                    ->orderBy('created_at', 'DESC')
+                    ->pager,
+                'currentPage' => $currentPage,
+                'limit' => $limit,
             ];
 
         return view('r_admin/transaksi_riwayat', $data);

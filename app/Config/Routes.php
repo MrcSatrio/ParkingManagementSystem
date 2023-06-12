@@ -76,6 +76,10 @@ $routes->group('admin', ['filter' => 'roleFilter'], function ($routes) {
     $routes->get('listPengumuman', 'Admin\Berkas::readBerkas');
     $routes->match(['get', 'post'], 'berkas/delete/(:num)', 'Admin\Berkas::delete/$1');
     $routes->get('modul', 'Admin\Berkas::modul');
+    //endPengumuman
+    //search
+    $routes->post('search', 'Admin\Search::index');
+    //endSearch
 });
 //role keuangan
 $routes->group('keuangan', ['filter' => 'roleFilter'], function ($routes) {
@@ -96,13 +100,16 @@ $routes->group('keuangan', ['filter' => 'roleFilter'], function ($routes) {
     $routes->match(['get', 'post'], 'berkas/delete/(:num)', 'Keuangan\Berkas::delete/$1');
     $routes->get('modul', 'Keuangan\Berkas::modul');
     //Transaksi
-        //Transaksi
-        $routes->get('transaksi_inputkodebooking', 'Keuangan\Transaksi::transaksi_inputkodebooking');
-        $routes->post('transaksi_validasiinputkodebooking', 'Keuangan\Transaksi::transaksi_validasiinputkodebooking');
-        $routes->post('transaksi_approve', 'Keuangan\Transaksi::transaksi_approve');
-        $routes->get('transaksi_riwayat', 'Keuangan\Transaksi::riwayat');
-        //endTransaksi
-    
+    //Transaksi
+    $routes->get('transaksi_inputkodebooking', 'Keuangan\Transaksi::transaksi_inputkodebooking');
+    $routes->post('transaksi_validasiinputkodebooking', 'Keuangan\Transaksi::transaksi_validasiinputkodebooking');
+    $routes->post('transaksi_approve', 'Keuangan\Transaksi::transaksi_approve');
+    $routes->get('transaksi_riwayat', 'Keuangan\Transaksi::riwayat');
+    //endTransaksi
+    //search
+    $routes->post('search', 'Admin\Search::index');
+    //endSearch
+
 });
 //role operator
 $routes->group('operator', ['filter' => 'roleFilter'], function ($routes) {
@@ -118,6 +125,9 @@ $routes->group('operator', ['filter' => 'roleFilter'], function ($routes) {
     $routes->post('check-out', 'Operator\CheckOut::index');
     //endParkir
     $routes->get('modul', 'Operator\Dashboard::modul');
+    //search
+    $routes->post('search', 'Operator\Search::index');
+    //endSearch
 });
 //role user
 $routes->group('user', ['filter' => 'roleFilter'], function ($routes) {
@@ -140,9 +150,12 @@ $routes->group('user', ['filter' => 'roleFilter'], function ($routes) {
     // Pengumuman
     $routes->get('pengumuman', 'User\Pengumuman::readBerkas');
     $routes->get('modul', 'User\Pengumuman::modul');
-            //RIwayat
-            $routes->get('riwayatTransaksi', 'User\Riwayat::riwayat');
-            //endriwayat
+    //RIwayat
+    $routes->get('riwayatTransaksi', 'User\Riwayat::riwayat');
+    //endriwayat
+    //search
+    $routes->post('search', 'User\Search::index');
+    //endSearch
 
 });
 //endFilters

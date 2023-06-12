@@ -21,7 +21,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <?php $i = 1; ?>
+                    <?php $i = 1 + ($limit * ($currentPage - 1)); ?>
                     <?php foreach ($users as $u) : ?>
                         <tr>
                             <td><?= $i++; ?></td>
@@ -55,7 +55,7 @@
                     <?php endforeach; ?>
                 </tbody>
             </table>
-            <?= $pager ?>
+            <?= $pager->links('pagination', 'pagination'); ?>
         </div>
     </div>
 </div>

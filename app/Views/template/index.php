@@ -103,28 +103,7 @@
 
     <!-- Custom scripts for all pages-->
     <script src="<?= base_url(); ?>assets/js/sb-admin-2.min.js"></script>
-    <script>
-        function search() {
-            var searchValue = document.getElementById('searchInput').value;
-            var searchResults = document.getElementById('searchResults');
-            searchResults.innerHTML = ""; // Menghapus hasil pencarian sebelumnya (jika ada)
 
-            // Lakukan logika pencarian sesuai kebutuhan Anda
-            // Berikut adalah contoh sederhana untuk mencetak hasil pencarian ke elemen 'searchResults':
-            var allText = document.body.innerText;
-
-            if (allText.toLowerCase().includes(searchValue.toLowerCase())) {
-                var result = document.createElement('p');
-                result.textContent = "Kata '" + searchValue + "' ditemukan.";
-                searchResults.appendChild(result);
-            } else {
-                var result = document.createElement('p');
-                result.textContent = "Kata '" + searchValue + "' tidak ditemukan.";
-                searchResults.appendChild(result);
-            }
-        }
-    </script>
-    
 </body>
 
 </html>

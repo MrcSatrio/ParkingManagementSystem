@@ -27,8 +27,8 @@ $this->section('page_content'); ?>
                         <th>Action</th>
                     </tr>
                 </thead>
-                <tbody>
-                    <?php $i = 1; ?>
+                <tbody><?php
+                $i = 1 + ($limit * ($currentPage - 1));?>
                     <?php foreach ($users as $u) : ?>
                         <tr>
                             <td><?= $i++; ?></td>
@@ -71,7 +71,7 @@ $this->section('page_content'); ?>
                     <?php endforeach; ?>
                 </tbody>
             </table>
-            <?= $pager ?>
+            <?= $pager->links('pagination', 'pagination'); ?>
         </div>
     </div>
 </div>

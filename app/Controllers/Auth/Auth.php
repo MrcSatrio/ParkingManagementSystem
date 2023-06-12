@@ -181,7 +181,7 @@ class Auth extends BaseController
                     'token' => null,
                 ];
                 $this->userModel->update($userdata['npm'], $data);
-                
+
                 return $this->response->redirect(site_url('/'));
             } else {
                 // Token tidak ditemukan dalam database
@@ -189,7 +189,7 @@ class Auth extends BaseController
                 return redirect()->back()->withInput();
             }
             session()->setFlashdata('success', 'Silahkan Login Dengan Password Baru');
-            return redirect()->to(base_url('/login'))->withInput();
+            return redirect()->to(base_url())->withInput();
         } else {
             session()->setFlashdata('error', $this->validator->listErrors());
             return redirect()->back()->withInput();

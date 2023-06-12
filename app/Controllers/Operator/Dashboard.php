@@ -31,20 +31,23 @@ class Dashboard extends BaseController
     public function riwayat()
 {
     $limit = 9; // Jumlah item per halaman
-    $offset = $this->request->getVar('page') ? ($this->request->getVar('page') - 1) * $limit : 0;
-    $totalRows = $this->transaksiModel->where('id_jenis_transaksi', 3)->countAllResults();
-
+    $currentPage = $this->request->getVar('page_pagination') ? $this->request->getVar('page_pagination') : 1;
     $data = [
         'title' => 'Parking Management System',
         'user' => $this->userModel
             ->join('role', 'role.id_role = user.id_role')
             ->where('npm', session('npm'))
             ->first(),
-        'parkir_motor' => $this->hargaModel->where('nama_harga', 'parkir_motor')->first(),
-        'parkir_mobil' => $this->hargaModel->where('nama_harga', 'parkir_mobil')->first(),
-        'riwayat' => $this->transaksiModel->where('id_jenis_transaksi', 3)
-        ->findAll($limit, $offset),
-        'pager' => $this->pager->makeLinks($offset, $limit, $totalRows, 'pagination')
+        'riwayat' => $this->transaksiModel
+            ->where('id_jenis_transaksi', 3)
+            ->orderBy('updated_at', 'DESC')
+            ->paginate($limit, 'pagination'),
+        'pager' => $this->transaksiModel
+            ->where('id_jenis_transaksi', 3)
+            ->orderBy('updated_at', 'DESC')
+            ->pager,
+            'currentPage' => $currentPage,
+            'limit' => $limit,
     ];
 
     return view('r_operator/riwayat_transaksi_parkir', $data);

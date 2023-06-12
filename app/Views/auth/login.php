@@ -34,12 +34,12 @@
                                 <?php endif; ?>
 
                                 <?php if (session()->getFlashdata('success')) : ?>
-                                    <div class="alert alert-danger">
+                                    <div class="alert alert-success">
                                         <?= session()->getFlashdata('success'); ?>
                                     </div>
                                 <?php endif; ?>
 
-                                <form class="user" method="post" action="<?= base_url('/login') ?>">
+                                <form class="user" method="post" action="<?= base_url('login') ?>">
                                     <div class="form-group">
                                         <input type="text" class="form-control form-control-user" name="npm" placeholder="Username" required>
                                     </div>
