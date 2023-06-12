@@ -26,7 +26,7 @@ $this->section('page_content'); ?>
                         <tbody>
                         <?php
 usort($riwayat, function($a, $b) {
-    return strtotime($b['updated_at']) - strtotime($a['updated_at']);
+    return strtotime($b['updated_at']) - strtotime($a['created_at']);
 });
  foreach ($riwayat as $i => $tr) : ?>
     <tr>

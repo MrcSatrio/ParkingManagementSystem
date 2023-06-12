@@ -1,0 +1,72 @@
+INFO - 2023-06-11 00:30:41 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-06-11 00:30:42 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-06-11 00:31:43 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-06-11 00:31:44 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-06-11 00:32:53 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-06-11 00:34:43 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-06-11 00:34:43 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-06-11 00:34:57 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-06-11 00:34:57 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-06-11 00:34:58 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+ERROR - 2023-06-11 00:35:02 --> Error connecting to the database: Error: Class "SQLite3" not found in C:\xampp\htdocs\DATACI\system\Database\SQLite3\Connection.php:89
+Stack trace:
+#0 C:\xampp\htdocs\DATACI\system\Database\BaseConnection.php(391): CodeIgniter\Database\SQLite3\Connection->connect(false)
+#1 C:\xampp\htdocs\DATACI\system\Database\SQLite3\Connection.php(59): CodeIgniter\Database\BaseConnection->initialize()
+#2 C:\xampp\htdocs\DATACI\system\Database\BaseConnection.php(574): CodeIgniter\Database\SQLite3\Connection->initialize()
+#3 C:\xampp\htdocs\DATACI\system\Database\BaseBuilder.php(1616): CodeIgniter\Database\BaseConnection->query('SELECT *\nFROM `...', Array, false)
+#4 C:\xampp\htdocs\DATACI\system\Model.php(268): CodeIgniter\Database\BaseBuilder->get()
+#5 C:\xampp\htdocs\DATACI\system\BaseModel.php(656): CodeIgniter\Model->doFirst()
+#6 C:\xampp\htdocs\DATACI\app\Controllers\Auth\Auth.php(23): CodeIgniter\BaseModel->first()
+#7 C:\xampp\htdocs\DATACI\system\CodeIgniter.php(934): App\Controllers\Auth\Auth->login()
+#8 C:\xampp\htdocs\DATACI\system\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Auth\Auth))
+#9 C:\xampp\htdocs\DATACI\system\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#10 C:\xampp\htdocs\ParkingManagementSystem\index.php(67): CodeIgniter\CodeIgniter->run()
+#11 {main}
+CRITICAL - 2023-06-11 00:35:02 --> Unable to connect to the database.
+Main connection [SQLite3]: Class "SQLite3" not found
+in SYSTEMPATH\Database\BaseConnection.php on line 427.
+ 1 SYSTEMPATH\Database\SQLite3\Connection.php(59): CodeIgniter\Database\BaseConnection->initialize()
+ 2 SYSTEMPATH\Database\BaseConnection.php(574): CodeIgniter\Database\SQLite3\Connection->initialize()
+ 3 SYSTEMPATH\Database\BaseBuilder.php(1616): CodeIgniter\Database\BaseConnection->query('SELECT *
+FROM `db_user`
+WHERE `npm` = :npm:
+ LIMIT 1', [...], false)
+ 4 SYSTEMPATH\Model.php(268): CodeIgniter\Database\BaseBuilder->get()
+ 5 SYSTEMPATH\BaseModel.php(656): CodeIgniter\Model->doFirst()
+ 6 APPPATH\Controllers\Auth\Auth.php(23): CodeIgniter\BaseModel->first()
+ 7 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Auth\Auth->login()
+ 8 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Auth\Auth))
+ 9 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+10 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+INFO - 2023-06-11 00:35:04 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2023-06-11 00:35:05 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+ERROR - 2023-06-11 00:35:10 --> Error connecting to the database: Error: Class "SQLite3" not found in C:\xampp\htdocs\DATACI\system\Database\SQLite3\Connection.php:89
+Stack trace:
+#0 C:\xampp\htdocs\DATACI\system\Database\BaseConnection.php(391): CodeIgniter\Database\SQLite3\Connection->connect(false)
+#1 C:\xampp\htdocs\DATACI\system\Database\SQLite3\Connection.php(59): CodeIgniter\Database\BaseConnection->initialize()
+#2 C:\xampp\htdocs\DATACI\system\Database\BaseConnection.php(574): CodeIgniter\Database\SQLite3\Connection->initialize()
+#3 C:\xampp\htdocs\DATACI\system\Database\BaseBuilder.php(1616): CodeIgniter\Database\BaseConnection->query('SELECT *\nFROM `...', Array, false)
+#4 C:\xampp\htdocs\DATACI\system\Model.php(268): CodeIgniter\Database\BaseBuilder->get()
+#5 C:\xampp\htdocs\DATACI\system\BaseModel.php(656): CodeIgniter\Model->doFirst()
+#6 C:\xampp\htdocs\DATACI\app\Controllers\Auth\Auth.php(23): CodeIgniter\BaseModel->first()
+#7 C:\xampp\htdocs\DATACI\system\CodeIgniter.php(934): App\Controllers\Auth\Auth->login()
+#8 C:\xampp\htdocs\DATACI\system\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Auth\Auth))
+#9 C:\xampp\htdocs\DATACI\system\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#10 C:\xampp\htdocs\ParkingManagementSystem\index.php(67): CodeIgniter\CodeIgniter->run()
+#11 {main}
+CRITICAL - 2023-06-11 00:35:10 --> Unable to connect to the database.
+Main connection [SQLite3]: Class "SQLite3" not found
+in SYSTEMPATH\Database\BaseConnection.php on line 427.
+ 1 SYSTEMPATH\Database\SQLite3\Connection.php(59): CodeIgniter\Database\BaseConnection->initialize()
+ 2 SYSTEMPATH\Database\BaseConnection.php(574): CodeIgniter\Database\SQLite3\Connection->initialize()
+ 3 SYSTEMPATH\Database\BaseBuilder.php(1616): CodeIgniter\Database\BaseConnection->query('SELECT *
+FROM `db_user`
+WHERE `npm` = :npm:
+ LIMIT 1', [...], false)
+ 4 SYSTEMPATH\Model.php(268): CodeIgniter\Database\BaseBuilder->get()
+ 5 SYSTEMPATH\BaseModel.php(656): CodeIgniter\Model->doFirst()
+ 6 APPPATH\Controllers\Auth\Auth.php(23): CodeIgniter\BaseModel->first()
+ 7 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Auth\Auth->login()
+ 8 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Auth\Auth))
+ 9 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+10 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
