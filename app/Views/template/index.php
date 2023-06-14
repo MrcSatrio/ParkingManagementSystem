@@ -58,7 +58,7 @@
             <footer class="sticky-footer bg-white">
                 <div class="container my-auto">
                     <div class="copyright text-center my-auto">
-                        <span>Copyright &copy; SI21A <?= date('Y'); ?></span>
+                        <span>Created By Dapid</span>
                     </div>
                 </div>
             </footer>

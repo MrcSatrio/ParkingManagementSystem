@@ -10,7 +10,10 @@
                     <div class="row">
                         <div class="col-lg">
                             <div class="p-5">
+                                
                                 <div class="text-center">
+                                    
+  <img src="<?= base_url() ?>assets/img/png.png" style="width: 180px; height: 180px;">
                                     <h1 class="h4 text-gray-900 mb-4">Selamat Datang!</h1>
                                 </div>
                                 <?php if (session()->get('msg')) : ?>

@@ -25,18 +25,68 @@ $no = 1;
                     <tbody>
                         <tr>
                             <td><?= $no++; ?></td>
-                            <td>Login</td>
+                            <td>Dashboard</td>
                             <td>
-                                <a class="btn btn-info" href="<?= base_url() ?>uploads/berkas/user/login.pdf" download>Unduh</a>
+                                <a class="btn btn-info" href="<?= base_url() ?>uploads/berkas/Um5n2b8v9c1x/Modul Dashboard.pdf" download>Unduh</a>
                             </td>
                         </tr>
                         <tr>
                             <td><?= $no++; ?></td>
                             <td>Top-Up</td>
                             <td>
-                                <a class="btn btn-info" href="<?= base_url() ?>uploads/berkas/user/topup.pdf" download>Unduh</a>
+                                <a class="btn btn-info" href="<?= base_url() ?>uploads/berkas/Um5n2b8v9c1x/Modul TopUp.pdf" download>Unduh</a>
                             </td>
                         </tr>
+                        <tr>
+                            <td><?= $no++; ?></td>
+                            <td>Kartu Hilang</td>
+                            <td>
+                            <a class="btn btn-info" href="<?= base_url() ?>uploads/berkas/Um5n2b8v9c1x/Modul Kartu Hilang.pdf" download>Unduh</a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><?= $no++; ?></td>
+                            <td>Pengumuman</td>
+                            <td>
+                            <a class="btn btn-info" href="<?= base_url() ?>uploads/berkas/Um5n2b8v9c1x/Modul Pengumuman.pdf" download>Unduh</a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><?= $no++; ?></td>
+                            <td>Riwayat Transaksi</td>
+                            <td>
+                            <a class="btn btn-info" href="<?= base_url() ?>uploads/berkas/Um5n2b8v9c1x/Modul Riwayat Transaksi.pdf" download>Unduh</a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><?= $no++; ?></td>
+                            <td>Login</td>
+                            <td>
+                            <a class="btn btn-info" href="<?= base_url() ?>uploads/berkas/Um5n2b8v9c1x/Modul Login.pdf" download>Unduh</a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><?= $no++; ?></td>
+                            <td>Lupa Password</td>
+                            <td>
+                            <a class="btn btn-info" href="<?= base_url() ?>uploads/berkas/Um5n2b8v9c1x/Modul Lupa Password.pdf" download>Unduh</a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><?= $no++; ?></td>
+                            <td>Cek Saldo</td>
+                            <td>
+                            <a class="btn btn-info" href="<?= base_url() ?>uploads/berkas/Um5n2b8v9c1x/Modul Cek Saldo.pdf" download>Unduh</a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><?= $no++; ?></td>
+                            <td>Profil</td>
+                            <td>
+                            <a class="btn btn-info" href="<?= base_url() ?>uploads/berkas/Um5n2b8v9c1x/Modul Profil.pdf" download>Unduh</a>
+                            </td>
+                        </tr>
+                        
                         <!-- Tambahkan baris ini untuk setiap data yang ingin ditampilkan -->
                     </tbody>
                 </table>
