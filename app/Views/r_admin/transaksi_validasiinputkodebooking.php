@@ -14,6 +14,13 @@ $this->section('page_content'); ?>
                                     <h5>Informasi Mahasiswa</h5>
                                 </td>
                             </tr>
+                            <?php if (!empty(session()->getFlashdata('error'))) : ?>
+                <div class="alert alert-danger" role="alert">
+                    <h4>Error</h4>
+                    </hr>
+                    <?php echo session()->getFlashdata('error'); ?>
+                </div>
+            <?php endif; ?>
                             <tr>
                                 <td>Nomor Pokok Mahasiswa </td>
                                 <td><?= $transaksi['npm']; ?></td>

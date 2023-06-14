@@ -29,6 +29,7 @@ class Transaksi extends BaseController
 
     public function transaksi_validasiinputkodebooking()
     {
+        
         $kodebooking = $this->request->getVar('kodebooking_transaksi');
         $databook = $this->transaksiModel->where('kodebooking_transaksi', $kodebooking)->first();
 
@@ -73,6 +74,20 @@ class Transaksi extends BaseController
 
     public function transaksi_approve()
     {
+        $validationRules = [
+            'nomor_kartu' => [
+                    'rules' => 'is_unique[kartu.nomor_kartu]',
+                    'errors' => [
+                        'is_unique' => 'Nomor Kartu ini Telah Digunakan Sebelumnya',
+                        'required' => 'Harus Di Isi'
+                    ]
+                ]
+        ];
+    
+        if (!$this->validate($validationRules)) {
+            session()->setFlashdata('error', $this->validator->listErrors());
+            return redirect()->to("admin/transaksi_inputkodebooking");
+        }
         $kodebooking_transaksi = $this->request->getVar('kode_booking');
         $nomor_kartu = $this->request->getVar('nomor_kartu');
 
@@ -168,9 +183,16 @@ class Transaksi extends BaseController
             'nominal_transaksi' => [
                 'rules' => 'numeric',
                 'errors' => [
-                    'numeric' => 'Pilih Nominal Saldo!'
+                    'numeric' => 'Pilih Nominal Saldo!',
                 ]
-            ]
+                ]
+                // 'nomor_kartu' => [
+                //     'rules' => 'required|is_unique[kartu.nomor_kartu]',
+                //     'errors' => [
+                //         'numeric' => 'Nomor Kartu Telah Digunakan',
+                //         'required' => 'Harus Di Isi'
+                //     ]
+                // ]
         ])) {
             session()->setFlashdata('error', $this->validator->listErrors());
             return redirect()->back()->withInput();
