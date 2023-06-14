@@ -90,7 +90,7 @@ $routes->group('keuangan', ['filter' => 'roleFilter'], function ($routes) {
     $routes->get('profile', 'Admin\Profile::index');
     $routes->post('update_profil', 'Admin\Profile::updateProfil');
     //endtopbar
-    $routes->get('read', 'Keuangan\User::userRead');
+    $routes->get('read', 'keuangan\User::userRead');
     $routes->get('create', 'Keuangan\User::create');
     $routes->post('insert', 'Keuangan\User::userInsert');
     // Pengumuman

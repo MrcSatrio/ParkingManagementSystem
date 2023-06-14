@@ -12,6 +12,13 @@
                     <?php echo session()->getFlashdata('error'); ?>
                 </div>
             <?php endif; ?>
+            <?php if (!empty(session()->getFlashdata('member'))) : ?>
+                <div class="alert alert-danger" role="alert">
+                    <h4>Mohon Maaf, Tidak Bisa TopUp Saldo</h4>
+                    </hr>
+                    <?php echo session()->getFlashdata('member'); ?>
+                </div>
+            <?php endif; ?>
             <form action="<?= base_url() ?>user/transaksi_topup" method="POST">
                 <div class="form-group row">
                     <label class="col-sm-3 col-form-label">Nomor Pokok Mahasiswa</label>

@@ -1,13 +1,13 @@
 <?= $this->extend('template/index');
 
 $this->section('page_content'); ?>
-            <?php if (!empty(session()->getFlashdata('berhasil'))  ) : ?>
-                <div class="alert alert-success" role="success">
-                    <h4>Data Berhasil Diubah</h4>
-                    </hr>
-                    <?php echo session()->getFlashdata('berhasil'); ?>
-                </div>
-            <?php endif; ?>
+<?php if (!empty(session()->getFlashdata('berhasil'))) : ?>
+    <div class="alert alert-success" role="success">
+        <h4>Data Berhasil Diubah</h4>
+        </hr>
+        <?php echo session()->getFlashdata('berhasil'); ?>
+    </div>
+<?php endif; ?>
 <div class="card mx-5 shadow">
     <div class="card-header">
         Users List
@@ -22,13 +22,16 @@ $this->section('page_content'); ?>
                         <th>Nama Mahasiswa</th>
                         <th>E-Mail</th>
                         <th>Nomor Kartu</th>
+                        <th>Jenis</th>
+                        <th>Masa Berlaku</th>
                         <th>Saldo</th>
                         <th>Role</th>
+                        <!-- <th>Tipe Kartu</th> -->
                         <th>Action</th>
                     </tr>
                 </thead>
                 <tbody><?php
-                $i = 1 + ($limit * ($currentPage - 1));?>
+                        $i = 1 + ($limit * ($currentPage - 1)); ?>
                     <?php foreach ($users as $u) : ?>
                         <tr>
                             <td><?= $i++; ?></td>
@@ -36,6 +39,19 @@ $this->section('page_content'); ?>
                             <td><?= $u['nama']; ?></td>
                             <td><?= $u['email']; ?></td>
                             <td><?= $u['nomor_kartu']; ?></td>
+                            <td>
+                                <?php
+                                switch ($u['id_status']) {
+                                    case '1':
+                                        echo '<div class="badge badge-danger">E-Biu</div>';
+                                        break;
+                                    case '2':
+                                        echo '<div class="badge badge-success">Member</div>';
+                                        break;
+                                }
+                                ?>
+                            </td>
+                            <td><?= $u['masa_berlaku']; ?></td>
                             <td>Rp<?= number_format($u['saldo']); ?></td>
                             <td>
                                 <?php
@@ -62,7 +78,7 @@ $this->section('page_content'); ?>
                                         <span class="sr-only">Toggle Dropdown</span>
                                     </button>
                                     <div class="dropdown-menu shadow">
-                                    <a class="dropdown-item" href="<?= base_url(); ?>admin/delete/<?= $u['npm']; ?>" onclick="return confirm('Apakah Anda yakin ingin menghapus data ini?')">Hapus</a>
+                                        <a class="dropdown-item" href="<?= base_url(); ?>admin/delete/<?= $u['npm']; ?>" onclick="return confirm('Apakah Anda yakin ingin menghapus data ini?')">Hapus</a>
 
                                     </div>
                                 </div>

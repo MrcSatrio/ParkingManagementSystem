@@ -15,8 +15,10 @@
                         <th>NIM</th>
                         <th>Nama Mahasiswa</th>
                         <th>E-Mail</th>
+                        <th>Jenis</th>
                         <th>Nomor Kartu</th>
                         <th>Saldo</th>
+                        
                         <th>Role</th>
                     </tr>
                 </thead>
@@ -28,6 +30,18 @@
                             <td><?= $u['npm']; ?></td>
                             <td><?= $u['nama']; ?></td>
                             <td><?= $u['email']; ?></td>
+                            <td>
+                                <?php
+                                switch ($u['id_status']) {
+                                    case '1':
+                                        echo '<div class="badge badge-success">E-Biu</div>';
+                                        break;
+                                    case '2':
+                                        echo '<div class="badge badge-info">Member</div>';
+                                        break;
+                                }
+                                ?>
+                            </td>
                             <td><?= $u['nomor_kartu']; ?></td>
                             <td>Rp<?= number_format($u['saldo'], 0, ',', '.'); ?></td>
                             <td>

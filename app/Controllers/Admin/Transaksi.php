@@ -29,7 +29,7 @@ class Transaksi extends BaseController
 
     public function transaksi_validasiinputkodebooking()
     {
-        
+
         $kodebooking = $this->request->getVar('kodebooking_transaksi');
         $databook = $this->transaksiModel->where('kodebooking_transaksi', $kodebooking)->first();
 
@@ -76,14 +76,14 @@ class Transaksi extends BaseController
     {
         $validationRules = [
             'nomor_kartu' => [
-                    'rules' => 'is_unique[kartu.nomor_kartu]',
-                    'errors' => [
-                        'is_unique' => 'Nomor Kartu ini Telah Digunakan Sebelumnya',
-                        'required' => 'Harus Di Isi'
-                    ]
+                'rules' => 'is_unique[kartu.nomor_kartu]',
+                'errors' => [
+                    'is_unique' => 'Nomor Kartu ini Telah Digunakan Sebelumnya',
+                    'required' => 'Harus Di Isi'
                 ]
+            ]
         ];
-    
+
         if (!$this->validate($validationRules)) {
             session()->setFlashdata('error', $this->validator->listErrors());
             return redirect()->to("admin/transaksi_inputkodebooking");
@@ -143,18 +143,22 @@ class Transaksi extends BaseController
     }
 
     public function topup()
-    {
-        if (!$this->validate([
-            'nominal' => [
-                'rules' => 'numeric',
-                'errors' => [
-                    'numeric' => 'Pilih Nominal Saldo!'
-                ]
+{
+    if (!$this->validate([
+        'nominal' => [
+            'rules' => 'numeric',
+            'errors' => [
+                'numeric' => 'Pilih Nominal Saldo!'
             ]
-        ])) {
-            session()->setFlashdata('error', $this->validator->listErrors());
-            return redirect()->back()->withInput();
-        }
+        ],
+    ])) {
+        session()->setFlashdata('error', $this->validator->listErrors());
+        return redirect()->back()->withInput();
+    }
+
+    $user = $this->userModel->where('npm', session('npm'))->first();
+
+    if ($user['id_status'] == 1) {
         $kodebooking_transaksi = substr(str_shuffle(str_repeat("0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ", 6)), 0, 6);
         $npm = $this->request->getVar('npm');
         $nominal_saldo = $this->request->getVar('nominal');
@@ -175,7 +179,40 @@ class Transaksi extends BaseController
         $this->transaksiModel->save($transaksi);
 
         return redirect()->to("user/transaksi_result/$kodebooking_transaksi/$nominal_saldo");
+    } elseif ($user['id_status'] == 2) {
+        $masaBerlaku = strtotime($user['masa_berlaku']);
+        $currentTime = time();
+
+        if ($masaBerlaku <= $currentTime) {
+            $kodebooking_transaksi = substr(str_shuffle(str_repeat("0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ", 6)), 0, 6);
+            $npm = $this->request->getVar('npm');
+            $nominal_saldo = $this->request->getVar('nominal');
+            $saldo_awal = $this->request->getVar('saldoawal');
+            $id_jenis_transaksi = $this->request->getVar('jenis_transaksi');
+            $id_status_transaksi = $this->request->getVar('status_transaksi');
+            $saldo_akhir = $saldo_awal + $nominal_saldo;
+
+            $transaksi = [
+                'kodebooking_transaksi' => $kodebooking_transaksi,
+                'npm' => $npm,
+                'id_jenis_transaksi' => $id_jenis_transaksi,
+                'saldoawal_transaksi' => $saldo_awal,
+                'nominal_transaksi' => $nominal_saldo,
+                'saldoakhir_transaksi' => $saldo_akhir,
+                'id_status_transaksi' => $id_status_transaksi
+            ];
+            $this->transaksiModel->save($transaksi);
+
+            return redirect()->to("user/transaksi_result/$kodebooking_transaksi/$nominal_saldo");
+        } else {
+            $session = session();
+            $session->setFlashdata('member', '<br>');
+            return redirect()->to('user/topup');
+        }
     }
+}
+
+
 
     public function transaksi_kartuHilang()
     {
@@ -185,14 +222,14 @@ class Transaksi extends BaseController
                 'errors' => [
                     'numeric' => 'Pilih Nominal Saldo!',
                 ]
-                ]
-                // 'nomor_kartu' => [
-                //     'rules' => 'required|is_unique[kartu.nomor_kartu]',
-                //     'errors' => [
-                //         'numeric' => 'Nomor Kartu Telah Digunakan',
-                //         'required' => 'Harus Di Isi'
-                //     ]
-                // ]
+            ]
+            // 'nomor_kartu' => [
+            //     'rules' => 'required|is_unique[kartu.nomor_kartu]',
+            //     'errors' => [
+            //         'numeric' => 'Nomor Kartu Telah Digunakan',
+            //         'required' => 'Harus Di Isi'
+            //     ]
+            // ]
         ])) {
             session()->setFlashdata('error', $this->validator->listErrors());
             return redirect()->back()->withInput();

@@ -74,6 +74,20 @@ class Transaksi extends BaseController
 
     public function transaksi_approve()
     {
+        $validationRules = [
+            'nomor_kartu' => [
+                    'rules' => 'is_unique[kartu.nomor_kartu]',
+                    'errors' => [
+                        'is_unique' => 'Nomor Kartu ini Telah Digunakan Sebelumnya',
+                        'required' => 'Harus Di Isi'
+                    ]
+                ]
+        ];
+    
+        if (!$this->validate($validationRules)) {
+            session()->setFlashdata('error', $this->validator->listErrors());
+            return redirect()->to("keuangan/transaksi_inputkodebooking");
+        }
         $kodebooking_transaksi = $this->request->getVar('kode_booking');
         $nomor_kartu = $this->request->getVar('nomor_kartu');
 

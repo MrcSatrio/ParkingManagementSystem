@@ -16,5 +16,5 @@ class UserModel extends Model
     protected $createdField  = 'created_at';
     protected $updatedField  = 'updated_at';
 
-    protected $allowedFields = ['npm', 'id_kartu', 'id_role', 'nama', 'email', 'password', 'token', 'created_at', 'updated_at'];
+    protected $allowedFields = ['npm', 'id_kartu', 'id_role','id_status','masa_berlaku', 'nama', 'email', 'password', 'token', 'created_at', 'updated_at'];
 }

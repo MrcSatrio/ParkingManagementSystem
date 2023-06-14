@@ -13,6 +13,7 @@ use Psr\Log\LoggerInterface;
 use App\Models\UserModel;
 use App\Models\KartuModel;
 use App\Models\RoleModel;
+use App\Models\StatusModel;
 use App\Models\TransaksiModel;
 use App\Models\JenisTransaksiModel;
 use App\Models\StatusTransaksiModel;
@@ -35,6 +36,7 @@ abstract class BaseController extends Controller
     protected $userModel = UserModel::class;
     protected $kartuModel = KartuModel::class;
     protected $roleModel = RoleModel::class;
+    protected $statusmodel = StatusModel::class;
     protected $transaksiModel = TransaksiModel::class;
     protected $jenistransaksiModel = JenisTransaksiModel::class;
     protected $statustransaksiModel = StatusTransaksiModel::class;
@@ -74,6 +76,7 @@ abstract class BaseController extends Controller
         $this->jenistransaksiModel = new JenisTransaksiModel();
         $this->statustransaksiModel = new StatusTransaksiModel();
         $this->hargaModel = new HargaModel();
+        $this->statusmodel = new StatusModel();
         $this->pager = Services::pager();
         // Do Not Edit This Line
         parent::initController($request, $response, $logger);
