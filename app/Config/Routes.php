@@ -141,6 +141,7 @@ $routes->group('user', ['filter' => 'roleFilter'], function ($routes) {
     //topup
     $routes->get('topup', 'User\Topup::index');
     $routes->post('transaksi_topup', 'Admin\Transaksi::topup');
+    $routes->post('cancel/(:segment)', 'Admin\Transaksi::cancel/$1');
     //endtopup
     //kartuhilang
     $routes->get('kartuhilang', 'User\KartuHilang::index');

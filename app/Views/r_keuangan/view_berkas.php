@@ -49,8 +49,7 @@ $this->section('page_content'); ?>
                             </td>
                             <td width="200px"><?= $row->keterangan; ?>
                             </td>
-                            <td><a class=" btn btn-info"
-                                    href="<?= base_url(); ?>keuangan/berkas/download/<?= $row->id_berkas; ?>">Download</a>
+                            <td>
                                 <form action="<?= base_url(); ?>keuangan/berkas/delete/<?= $row->id_berkas; ?>" method="POST"
                                     style="display: inline;">
                                     <button class="btn btn-danger" type="submit"

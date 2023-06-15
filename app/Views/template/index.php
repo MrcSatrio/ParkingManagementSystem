@@ -58,7 +58,7 @@
             <footer class="sticky-footer bg-white">
                 <div class="container my-auto">
                     <div class="copyright text-center my-auto">
-                        <span>Created By Dapid</span>
+                        <span>Created By SI21A</span>
                     </div>
                 </div>
             </footer>

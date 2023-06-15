@@ -24,7 +24,7 @@ $this->section('page_content'); ?>
                 <div class="form-group row">
                     <label class="col-sm-3 col-form-label">Nomor Pokok Mahasiswa</label>
                     <div class="col-sm-9">
-                        <input type="text" class="form-control" name="npm" placeholder="NPM"><br>
+                        <input type="text" class="form-control" name="npm" placeholder="NPM Mahasiswa"><br>
                     </div>
 
 
@@ -34,13 +34,21 @@ $this->section('page_content'); ?>
                     </div>
                     <label class="col-sm-3 col-form-label">Email</label>
                     <div class="col-sm-9">
-                        <input type="email" class="form-control form-control-user" name="email" placeholder="binainsani@gmail.com"><br>
+                        <input type="email" class="form-control form-control-user" name="email" placeholder="Email Mahasiswa"><br>
                     </div>
                     <label class="col-sm-3 col-form-label">Saldo Awal</label>
                     <div class="col-sm-9">
                         <select name="saldo" class="custom-select form-control" id="" required>
+                            <option value="0">Rp.0</option>
                             <option value="20000">Rp.20.000</option>
                             <option value="50000">Rp.50.000</option>
+                        </select><br><br>
+                    </div>
+                    <label class="col-sm-3 col-form-label">Jenis</label>
+                    <div class="col-sm-9">
+                        <select name="id_status" class="custom-select form-control" id="" required>
+                            <option value="1">E-Biu</option>
+                            <!-- <option value="2">Member</option> -->
                         </select><br><br>
                     </div>
                     <input type="hidden" name="password" value="ABCD1234">

@@ -5,7 +5,7 @@ $this->section('page_content'); ?>
     <div class="col-md-6">
         <div class="card border-warning mb-3 shadow mx-2">
             <div class="card-body">
-                <h4 class="card-title text-center">Kode Booking : <b><?= $transaksi['kodebooking_transaksi']; ?></b></h4>
+                <h4 class="card-title text-center">Kode Pemesanan : <b><?= $transaksi['kodebooking_transaksi']; ?></b></h4>
                 <div class="table-responsive-md">
                     <table class="table table-borderless">
                         <tbody>

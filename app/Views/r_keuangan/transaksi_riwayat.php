@@ -57,9 +57,13 @@ $this->section('page_content'); ?>
                                     <td><?= 'Rp ' . number_format($tr['saldoakhir_transaksi']); ?></td>
                                     <td>
                                         <?php if ($tr['id_status_transaksi'] == 1) : ?>
-                                            <span class="badge badge-danger"><?= $tr['nama_status_transaksi']; ?></span>
-                                        <?php else : ?>
+                                            <span class="badge badge-warning"><?= $tr['nama_status_transaksi']; ?></span>
+                                        <?php elseif ($tr['id_status_transaksi'] == 2) : ?>
                                             <span class="badge badge-success"><?= $tr['nama_status_transaksi']; ?></span>
+                                            <?php elseif ($tr['id_status_transaksi'] == 3) : ?>
+                                            <span class="badge badge-success"><?= $tr['nama_status_transaksi']; ?></span>
+                                            <?php elseif ($tr['id_status_transaksi'] == 4) : ?>
+                                            <span class="badge badge-danger"><?= $tr['nama_status_transaksi']; ?></span>
                                         <?php endif ?>
                                     </td>
                                     <td><?= $tr['updated_at']; ?></td>
