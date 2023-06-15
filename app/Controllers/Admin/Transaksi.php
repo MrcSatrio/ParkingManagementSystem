@@ -147,25 +147,39 @@ class Transaksi extends BaseController
     }
 
     public function topup()
-{
-    if (!$this->validate([
-        'nominal' => [
-            'rules' => 'numeric',
-            'errors' => [
-                'numeric' => 'Pilih Nominal Saldo!'
-            ]
-        ],
-    ])) {
-        session()->setFlashdata('error', $this->validator->listErrors());
-        return redirect()->back()->withInput();
-    }
-
-    $user = $this->userModel->where('npm', session('npm'))->first();
-    $transaksiData = $this->transaksiModel->where('npm', session('npm'))->findAll();
-
-    $transaksiJenis = array_column($transaksiData, 'id_status_transaksi');
-
-    if ($user['id_status'] == 1 && (in_array(2, $transaksiJenis) || in_array(3, $transaksiJenis) || in_array(4, $transaksiJenis)) && !in_array(1, $transaksiJenis)) {
+    {
+        if (!$this->validate([
+            'nominal' => [
+                'rules' => 'numeric',
+                'errors' => [
+                    'numeric' => 'Pilih Nominal Saldo!'
+                ]
+            ],
+        ])) {
+            session()->setFlashdata('error', $this->validator->listErrors());
+            return redirect()->back()->withInput();
+        }
+    
+        $user = $this->userModel->where('npm', session('npm'))->first();
+        $transaksiData = $this->transaksiModel->where('npm', session('npm'))->findAll();
+    
+        $transaksiJenis = array_column($transaksiData, 'id_status_transaksi');
+    
+        if ($user['id_status'] == 1 && in_array(1, $transaksiJenis)) {
+            session()->setFlashdata('error', 'Topup gagal. Anda sudah memiliki transaksi topup yang sedang diproses.');
+            return redirect()->back()->withInput();
+        } elseif ($user['id_status'] == 2) {
+            $masaBerlaku = strtotime($user['masa_berlaku']);
+            $currentTime = time();
+    
+            if ($masaBerlaku > $currentTime || in_array(1, $transaksiJenis)) {
+                session()->setFlashdata('error', 'Topup gagal. Anda sudah memiliki transaksi topup yang sedang diproses atau masa berlaku Member belum habis.');
+                return redirect()->back()->withInput();
+            }
+        }
+    
+        // Lanjutkan dengan proses topup jika kondisi di atas tidak terpenuhi
+    
         $kodebooking_transaksi = substr(str_shuffle(str_repeat("0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ", 6)), 0, 6);
         $npm = $this->request->getVar('npm');
         $nominal_saldo = $this->request->getVar('nominal');
@@ -173,7 +187,7 @@ class Transaksi extends BaseController
         $id_jenis_transaksi = $this->request->getVar('jenis_transaksi');
         $id_status_transaksi = $this->request->getVar('status_transaksi');
         $saldo_akhir = $saldo_awal + $nominal_saldo;
-
+    
         $transaksi = [
             'kodebooking_transaksi' => $kodebooking_transaksi,
             'npm' => $npm,
@@ -184,42 +198,10 @@ class Transaksi extends BaseController
             'id_status_transaksi' => $id_status_transaksi
         ];
         $this->transaksiModel->save($transaksi);
-
+    
         return redirect()->to("user/transaksi_result/$kodebooking_transaksi/$nominal_saldo");
-    } elseif ($user['id_status'] == 2 && (in_array(2, $transaksiJenis) || in_array(3, $transaksiJenis) || in_array(4, $transaksiJenis)) && !in_array(1, $transaksiJenis)) {
-        $masaBerlaku = strtotime($user['masa_berlaku']);
-        $currentTime = time();
-
-        if ($masaBerlaku <= $currentTime) {
-            $kodebooking_transaksi = substr(str_shuffle(str_repeat("0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ", 6)), 0, 6);
-            $npm = $this->request->getVar('npm');
-            $nominal_saldo = $this->request->getVar('nominal');
-            $saldo_awal = $this->request->getVar('saldoawal');
-            $id_jenis_transaksi = $this->request->getVar('jenis_transaksi');
-            $id_status_transaksi = $this->request->getVar('status_transaksi');
-            $saldo_akhir = $saldo_awal + $nominal_saldo;
-
-            $transaksi = [
-                'kodebooking_transaksi' => $kodebooking_transaksi,
-                'npm' => $npm,
-                'id_jenis_transaksi' => $id_jenis_transaksi,
-                'saldoawal_transaksi' => $saldo_awal,
-                'nominal_transaksi' => $nominal_saldo,
-                'saldoakhir_transaksi' => $saldo_akhir,
-                'id_status_transaksi' => $id_status_transaksi
-            ];
-            $this->transaksiModel->save($transaksi);
-
-            return redirect()->to("user/transaksi_result/$kodebooking_transaksi/$nominal_saldo");
-        } else {
-            session()->setFlashdata('error', 'Topup gagal. Masa berlaku Member belum habis.');
-            return redirect()->back()->withInput();
-        }
-    } elseif ($user['id_status'] == 1 && in_array(1, $transaksiJenis)) {
-        session()->setFlashdata('error', 'Topup gagal. Anda sudah memiliki transaksi topup yang sedang diproses.');
-        return redirect()->back()->withInput();
     }
-}
+    
 
 
     
@@ -345,23 +327,24 @@ class Transaksi extends BaseController
     public function cancel($id_transaksi)
     {
         $data = $this->request->getPost();
+        $id_status_transaksi = $data['id_status_transaksi'];
+    
+        // Cek apakah id_status_transaksi bukan 4
+        if ($id_status_transaksi != 4) {
+            session()->setFlashdata('error', 'Transaksi Tidak dapat Dibatalkan');
+            return redirect()->back();
+        }
+    
         $user = $this->transaksiModel
             ->join('jenis_transaksi', 'jenis_transaksi.id_jenis_transaksi = transaksi.id_jenis_transaksi')
             ->join('status_transaksi', 'status_transaksi.id_status_transaksi = transaksi.id_status_transaksi')
             ->where('id_transaksi', $id_transaksi)
             ->first();
     
-        if ($user) {
-            if ($user['id_status_transaksi'] != 4) {
-                // Tampilkan alert gagal cancel di sini
-                echo "<script>alert('Gagal Cancel');</script>";
-                return redirect()->back()->withInput();
-            }
-    
-            $this->transaksiModel->update($user['id_transaksi'], $data);
-            session()->setFlashdata('error', 'Transaksi Berhasil Dibatalkan.');
-            return redirect()->back()->withInput();
-        }
+        $this->transaksiModel->update($user['id_transaksi'], $data);
+        session()->setFlashdata('success', 'Transaksi Berhasil Dibatalkan.');
+        return redirect()->back()->withInput();
     }
     
-}
+}    
+
