@@ -22,6 +22,7 @@ class Search extends BaseController
                 ->orLike('transaksi.kodebooking_transaksi', $keyword)
                 ->orLike('kartu.nomor_kartu', $keyword)
                 ->orLike('user.nama', $keyword)
+                ->orLike('transaksi.updated_at', $keyword)
                 ->findAll();
 
             // Cek apakah hasil pencarian tidak kosong

@@ -13,7 +13,7 @@
                                 
                                 <div class="text-center">
                                     
-  <img src="<?= base_url() ?>assets/img/png.png" style="width: 180px; height: 180px;">
+  <img src="<?= base_url() ?>assets/img/logo.png" style="width: 200px; height: 200px;">
                                     <h1 class="h4 text-gray-900 mb-4">Selamat Datang!</h1>
                                 </div>
                                 <?php if (session()->get('msg')) : ?>
