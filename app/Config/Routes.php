@@ -104,6 +104,7 @@ $routes->group('keuangan', ['filter' => 'roleFilter'], function ($routes) {
     $routes->get('transaksi_inputkodebooking', 'Keuangan\Transaksi::transaksi_inputkodebooking');
     $routes->post('transaksi_validasiinputkodebooking', 'Keuangan\Transaksi::transaksi_validasiinputkodebooking');
     $routes->post('transaksi_approve', 'Keuangan\Transaksi::transaksi_approve');
+    $routes->post('cetak/(:segment)', 'Admin\Transaksi::cetak/$1');
     $routes->get('transaksi_riwayat', 'Keuangan\Transaksi::riwayat');
     //endTransaksi
     //search

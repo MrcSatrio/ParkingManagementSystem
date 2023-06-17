@@ -394,5 +394,33 @@ class Transaksi extends BaseController
         session()->setFlashdata('success', 'Bukti Berhasil diupload.');
         return redirect()->back()->withInput();
     }
+    public function cetak($id_transaksi)
+    {
+        $transaksi = $this->transaksiModel
+            ->join('user', 'user.npm = transaksi.npm')
+            ->join('kartu', 'kartu.id_kartu = user.id_kartu')
+            ->join('status_transaksi', 'status_transaksi.id_status_transaksi = transaksi.id_status_transaksi')
+            ->join('jenis_transaksi', 'jenis_transaksi.id_jenis_transaksi = transaksi.id_jenis_transaksi')
+            ->where('id_transaksi', $id_transaksi)
+            ->first();
+    
+        $harga = $this->hargaModel->where('nama_harga', 'kartu_hilang')->first();
+        $total_harga = $transaksi['nominal_transaksi'] + $harga['nominal'];
+    
+        $data = [
+            'title' => 'Parking Management System',
+            'user' => $this->userModel
+                ->join('role', 'role.id_role = user.id_role')
+                ->where('npm', session('npm'))
+                ->first(),
+            'transaksi' => $transaksi,
+            'harga' => $total_harga
+        ];
+    
+        // Menampilkan hasil data booking code dan nominal saldo ke form transaksi_formResult
+        return view('r_keuangan/cetak', $data);
+    }
+    
+    
 }    
 

@@ -1,7 +1,6 @@
 <?php
-echo $this->extend('template/index');
-
-echo $this->section('page_content');
+    echo $this->extend('template/index');
+    echo $this->section('page_content');
 ?>
 
 <div class="row justify-content-center">
@@ -9,7 +8,7 @@ echo $this->section('page_content');
         <div class="card border-success mb-3 shadow mx-2">
             <div class="card-body">
                 <h4 class="card-title text-center">
-                    Kode Booking : <b><?= $transaksi['kodebooking_transaksi']; ?></b><br>
+                    Kode Booking: <b><?= $transaksi['kodebooking_transaksi']; ?></b><br>
                     <img src="<?= base_url() ?>assets/img/ceklis.png" width="15%"><br>
                     Transaksi Berhasil
                 </h4>
@@ -22,7 +21,7 @@ echo $this->section('page_content');
                                 </td>
                             </tr>
                             <tr>
-                                <td>Nomor Pokok Mahasiswa </td>
+                                <td>Nomor Pokok Mahasiswa</td>
                                 <td><?= $transaksi['npm']; ?></td>
                             </tr>
                             <tr>
@@ -34,7 +33,6 @@ echo $this->section('page_content');
                                 <td><?= $transaksi['email']; ?></td>
                             </tr>
                             <tr>
-
                                 <td colspan="2">
                                     <h5>Transaksi</h5>
                                 </td>
@@ -54,7 +52,6 @@ echo $this->section('page_content');
                             <tr>
                                 <td>Nominal</td>
                                 <td><?= 'Rp ' . number_format($transaksi['nominal_transaksi'], 0, ',', '.'); ?></td>
-
                             </tr>
                             <tr>
                                 <td>Saldo Akhir</td>
@@ -63,7 +60,6 @@ echo $this->section('page_content');
                             <tr class="table-active">
                                 <td>Total</td>
                                 <th class="text-danger"><?= 'Rp ' . number_format($harga, 0, ',', '.'); ?></th>
-
                             </tr>
                             <tr>
                                 <td>Tanggal Transaksi</td>
@@ -83,7 +79,7 @@ echo $this->section('page_content');
             </div>
         </div>
         <div class="text-center">
-        <button onclick="window.print()">Cetak</button>
+            <button onclick="window.print()" class="btn btn-primary">Cetak</button>
         </div>
     </div>
 </div>
