@@ -20,7 +20,9 @@ class TransaksiModel extends Model
         'saldoawal_transaksi',
         'nominal_transaksi',
         'saldoakhir_transaksi',
+        'id_jenis_pembayaran',
         'id_status_transaksi',
+        'bukti_pembayaran',
         'created_at',
         'updated_at'
     ];

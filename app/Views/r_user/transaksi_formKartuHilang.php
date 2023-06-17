@@ -25,11 +25,21 @@ $this->section('page_content'); ?>
                         <br>
                         <label for="saldo" class="form-label">Isi Saldo:</label>
                         <select class="custom-select" name="nominal_transaksi" required aria-readonly="true">
-                            <option selected>Pilih nominal...</option>
+                            <option selected>Pilih Nominal...</option>
                             <option value="0">Rp 0</option>
                             <option value="50000">Rp 50.000</option>
                             <option value="75000">Rp 75.000</option>
                             <option value="90000">Rp 90.000</option>
+                        </select>
+                    </div>
+                    <div class="mb-3">
+                        <br>
+                        <label for="saldo" class="form-label">Metode Pembayaran</label>
+                        <select class="custom-select" name="jenis_pembayaran" required aria-readonly="true">
+                            <option selected>Pilih Metode Pembayaran</option>
+                            <option value="1">Cash</option>
+                            <option value="2">Transfer</option>
+
                         </select>
                     </div>
                     <div class="mb-3">

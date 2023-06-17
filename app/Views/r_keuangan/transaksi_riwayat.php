@@ -30,6 +30,8 @@ $this->section('page_content'); ?>
                                 <th>Nominal</th>
                                 <th>Saldo Akhir</th>
                                 <th>Status</th>
+                                <th>Metode Pembayaran</th>
+                                <th>Bukti Pembayaran</th>
                                 <th>Tanggal</th>
                             </tr>
                         </thead>
@@ -66,6 +68,29 @@ $this->section('page_content'); ?>
                                             <span class="badge badge-danger"><?= $tr['nama_status_transaksi']; ?></span>
                                         <?php endif ?>
                                     </td>
+                                    <td>
+<?php if ($tr['id_jenis_pembayaran'] == 1) : ?>
+                <span class="badge badge-info"><?= $tr['nama_jenis_pembayaran']; ?></span>
+            <?php elseif ($tr['id_jenis_pembayaran'] == 2) : ?>
+                <span class="badge badge-info"><?= $tr['nama_jenis_pembayaran']; ?></span>
+                <?php endif ?>
+</td>
+<td>
+    <?php if ($tr['id_jenis_pembayaran'] == 2) : ?>
+        <button type="button" class="btn btn-primary" style="padding: 5px 5px;" onclick="openImageInNewTab('<?= base_url('uploads/bukti/' . $tr['bukti_pembayaran']); ?>')">Lihat Bukti</button>
+    <?php endif; ?>
+</td>
+
+
+
+<script>
+  function openImageInNewTab(imageUrl) {
+    window.open(imageUrl, '_blank');
+  }
+</script>
+
+
+
                                     <td><?= $tr['updated_at']; ?></td>
                                 </tr>
                             <?php

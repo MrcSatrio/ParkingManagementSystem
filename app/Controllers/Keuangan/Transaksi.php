@@ -274,12 +274,14 @@ class Transaksi extends BaseController
         'transaksi' => $this->transaksiModel
             ->join('jenis_transaksi', 'jenis_transaksi.id_jenis_transaksi = transaksi.id_jenis_transaksi')
             ->join('status_transaksi', 'status_transaksi.id_status_transaksi = transaksi.id_status_transaksi')
+            ->join('jenis_pembayaran', 'jenis_pembayaran.id_jenis_pembayaran = transaksi.id_jenis_pembayaran')
             ->whereIn('transaksi.id_jenis_transaksi', [1, 2]) // Menggunakan whereIn untuk mencari id_jenis_transaksi 1 atau 2
             ->orderBy('updated_at', 'DESC')
             ->paginate($limit, 'pagination'),
         'pager' => $this->transaksiModel
             ->join('jenis_transaksi', 'jenis_transaksi.id_jenis_transaksi = transaksi.id_jenis_transaksi')
             ->join('status_transaksi', 'status_transaksi.id_status_transaksi = transaksi.id_status_transaksi')
+            ->join('jenis_pembayaran', 'jenis_pembayaran.id_jenis_pembayaran = transaksi.id_jenis_pembayaran')
             ->whereIn('transaksi.id_jenis_transaksi', [1, 2]) // Menggunakan whereIn untuk mencari id_jenis_transaksi 1 atau 2
             ->orderBy('created_at', 'DESC')
             ->pager,

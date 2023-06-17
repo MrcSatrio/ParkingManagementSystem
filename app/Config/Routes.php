@@ -142,11 +142,12 @@ $routes->group('user', ['filter' => 'roleFilter'], function ($routes) {
     $routes->get('topup', 'User\Topup::index');
     $routes->post('transaksi_topup', 'Admin\Transaksi::topup');
     $routes->post('cancel/(:segment)', 'Admin\Transaksi::cancel/$1');
+    $routes->post('bukti/(:segment)', 'Admin\Transaksi::bukti/$1');
     //endtopup
     //kartuhilang
     $routes->get('kartuhilang', 'User\KartuHilang::index');
     $routes->post('transaksi_kartuHilang', 'Admin\Transaksi::transaksi_kartuHilang');
-    $routes->get('transaksi_result/(:any)/(:num)', 'Admin\Transaksi::transaksi_result/$1/$2');
+    $routes->get('transaksi_result/(:any)/(:num)/(:num)', 'Admin\Transaksi::transaksi_result/$1/$2/$3');
     //endKartuhilang
     // Pengumuman
     $routes->get('pengumuman', 'User\Pengumuman::readBerkas');

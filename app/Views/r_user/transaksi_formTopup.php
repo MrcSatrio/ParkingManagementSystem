@@ -38,6 +38,18 @@
                             <option value="200000">200.000</option>
                         </select>
                     </div>
+                </div>
+                <div class="form-group row">
+                    <label class="col-sm-3 col-form-label">Metode Pembayaran</label>
+                    <div class="col-sm-9">
+                        <select name="jenis_pembayaran" class="form-control form-control-user custom-select">
+                            <option selected>Pilih Metode Pembayaran</option>
+                            <option value="1">Cash</option>
+                            <option value="2">Transfer</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
                     <!-- JENIS TRANSAKSI -->
                     <div class="col-sm-9">
                         <input type="hidden" class="form-control" value="1" name="jenis_transaksi">
